@@ -1,0 +1,170 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[portuguese]{babel}
+\usepackage{blindtext}
+\usepackage{mathptmx}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{index}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{nicematrix}
+\usepackage{xcolor}
+\usepackage{soulutf8}
+\usepackage[hyphens]{url}
+\usetikzlibrary{matrix}
+\usetikzlibrary{patterns,decorations.pathreplacing}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+\DeclareUnicodeCharacter{2212}{-}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand*\R{\mathbb{R}}
+\newcolumntype{C}{>{\centering\let\newline\\\arraybackslash\ $}m{3cm}<{$}}
+
+
+\begin{document}
+\title{\Large{\textbf{Tarefa 4}}}
+\author{
+\begin{tabular}{c r}
+Gabriel Belém Barbosa&RA: 234672
+\end{tabular}
+}
+\date{31 de Agosto de 2021}
+
+\maketitle
+\let\cleardoublepage\clearpage
+\newpage
+\setcounter{page}{2}
+\tableofcontents
+\newpage
+
+\section{Exercício 1}
+\subsection{Item (a)}
+$max\text{ }z=x_1$
+\[
+\text{Sujeito a:}\left\{
+\begin{array}{l}
+x_1+2x_2+x_3=6\\
+x_1-x_2+x_4=4\\
+x_2+x_5=2\\
+x_1\geq 0, x_2\geq 0, x_3\geq 0, x_4\geq 0, x_5\geq 0
+\end{array}
+\right.
+\]
+\subsection{Item (b)}
+\begin{table}[h]
+\centering
+\begin{figure}[H]
+    \centering
+    \caption{\label{fig:4} Região de factibilidade}
+    \includegraphics[width=11cm]{b}
+\end{figure}
+\small
+Região de factibilidade em vermelho.
+\end{table}
+\subsection{Item (c)}
+\begin{table}[H]
+\centering
+\caption{\label{tab:mse} Pontos extremos}
+\begin{tabular}{|c||C|C|C|c|}
+\hline Nome&\text{Var. não básicas}&\text{Var. básicas}&(x_1, x_2, x_3, x_4, x_5)&Factibilidade\\
+\hline \hline X1 &x_1, x_2& x_3, x_4, x_5&(0,0,6,4,2)&\checkmark\\
+\hline X2&x_1, x_3& x_2, x_4, x_5&(0,3,0,7,-1)&$\times$\\
+\hline X3&x_1, x_4& x_2, x_3, x_5&(0,-4,14,0,6)&$\times$\\
+\hline X4& x_1, x_5& x_2, x_3, x_4&(0,2,2,6,0)&\checkmark\\
+\hline X5&x_2, x_3& x_1, x_4, x_5&(6,0,0,-2,2)&$\times$\\
+\hline X6&x_2, x_4&x_1, x_3, x_5&(4,0,2,0,2)&\checkmark\\
+\hline X7&x_2, x_5&x_1, x_3, x_4&\text{---}&---\\
+\hline X8& x_3, x_4& x_1, x_2, x_5&\frac{1}{3}(14,2,0,0,4)&\checkmark\\
+\hline X9&x_3, x_5& x_1, x_2, x_4&(2,2,0,4,0)&\checkmark\\
+\hline X10&x_4, x_5& x_1, x_2, x_3&(6,2,-4,0,0)&$\times$\\ \hline
+\end{tabular}
+\end{table}
+A tabela acima mostra os pontos extremos encontrados computacionalmente (algoritmo apresentado ao final do trabalho na seção Algoritmo), sendo que a factibilidade foi definida através do cumprimento (ou não, no caso de infactíveis) de todas as condições de positividade. Repare que o sistema básico associado ao que seria o ponto X7 não tem solução, logo foi identificado com um ---.
+\begin{figure}[H]
+    \centering
+    \caption{\label{fig:4} Pontos extremos no plano}
+    \includegraphics[width=11cm]{c}
+\end{figure}
+\subsection{Item (d)}
+Como visto na Tabela 1, $x_2$ entra e $x_3$ sai das variáveis básicas no movimento de $(4,0,2,0,2)$ a $\frac{1}{3}(14,2,0,0,4)$.
+\section{Exercício 2}
+\subsection{Item (a)}
+O sistema em questão é
+\[
+\underbrace{
+\begin{pmatrix}
+1&-2&-4\\
+2&-4&2\\
+2&-5&3
+\end{pmatrix}}_B
+\underbrace{
+\begin{pmatrix}
+x_1\\
+x_2\\
+x_5
+\end{pmatrix}}_{\hat{x}_B}
+=
+\underbrace{
+\begin{pmatrix}
+2\\
+-6\\
+-7
+\end{pmatrix}}_{b}
+\]
+No qual a matriz $B$ tem $det(B)=10\neq0$, logo forma uma base. A solução básica em questão é $x*=(-2,0,0,0,-1)$ (obtida computacionalmente através do \verb+Octave+). Esse ponto desobedece a condição de positividade das variáveis $x_1$ e $x_5$, logo não é uma solução básica factível. Em adendo, como $x_2=0$ e $x_2$ é uma variável da base, temos que essa solução é degenerada.
+\section{Algoritmo}
+O seguinte algoritmo para o Exercício 1 foi implementado em \verb+Octave+.
+\begin{verbatim}
+restri=[1,2,1,0,0;1,-1,0,1,0;0,1,0,0,1]
+res=[6;4;2;0;0]
+k=0;
+solsol=[];
+hf=figure;
+xlabel ("x1");
+ylabel ("x2");
+hold on
+for i=1:size(restri,2)
+    for j=i+1:size(restri,2)
+        k++;
+        aux=restri;
+        aux(:,[i,j])=[];
+        sol=aux\[res(1);res(2);res(3)];
+        if (aux*sol==[res(1);res(2);res(3)])
+            solsol=[solsol,[sol;i;j]]
+            if (i==1)
+                if (j==2)
+                    text(0.1, 0.1, strcat("X",num2str(k)))
+                    scatter(0, 0, "filled")
+                else
+                    text(0.1, sol(1)+0.1, strcat("X",num2str(k)))
+                    scatter(0, sol(1), "filled")
+                end
+            elseif (i==2)
+                text(sol(1)+0.1, 0.1, strcat("X",num2str(k)))
+                scatter(sol(1), 0, "filled")
+            else
+                text(sol(1)+0.1, sol(2)+0.1, strcat("X",num2str(k)))
+                scatter(sol(1), sol(2), "filled")
+            end
+         end
+    endfor
+endfor
+for i=1:size(restri,1)
+    if (restri(i,2)!=0)
+        fplot(@(x) (res(i)-restri(i,1)*x)/restri(i,2),[0,6.5]);
+    end
+endfor
+line([0.01,0.01],[-4,6]);
+line([0,6.5],[0,0]);
+legend("hide");
+print (hf, "c.png");
+hold off
+\end{verbatim}
+\end{document}

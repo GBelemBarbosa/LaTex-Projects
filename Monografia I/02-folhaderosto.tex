@@ -1,0 +1,41 @@
+%=======================================================================
+% FOLHA DE ROSTO
+%
+% A folha de rosto traz novamente o autor e o título do trabalho, bem
+% como um parágrafo descrevendo o tipo de texto (monografia,
+% dissertação, tese etc) e o propósito do texto. A informação do
+% orientador também deve estar presente.
+%
+% Não altere este arquivo. As informações que aparecem aqui são
+% definidas no arquivo monografia.tex.
+%=======================================================================
+\clearpage
+{
+\thispagestyle{empty}
+\sffamily
+\begin{center}
+
+\vspace*{3cm}
+
+{\large \aluno}
+
+\vspace{5cm}
+
+{
+  \bfseries\Large
+      {\titulo}\ifx\bolsa\undefined\else\footnote{\bolsa}\fi
+}
+\end{center}
+
+\vspace{3.5cm}
+
+\begin{flushright}
+  \begin{minipage}{9cm}
+  Monografia apresentada ao Instituto de Matemática, Estatística e
+  Computação Científica da Universidade Estadual de Campinas como
+  parte dos requisitos para obtenção de créditos na disciplina Projeto
+  Supervisionado, sob a orientação do(a) {\orientador}.
+  \end{minipage}
+\end{flushright}
+
+}

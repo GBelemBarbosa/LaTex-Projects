@@ -1,0 +1,118 @@
+%=======================================================================
+%
+% MODELO DE FOLHA DE ROSTO PARA MONOGRAFIA DAS DISCIPLINAS MS777/8777
+%
+% Todas as monografias produzidas para as disciplinas de Projeto
+% Supervisionado (MS777 e MS877) devem conter essa folha de rosto.
+%
+% Este modelo de folha de rosto segue normas para confecção de textos
+% científicos e foi criada por Ricardo Biloti, com o apoio de Silvania
+% Renata de Jesus Ribeiro Cirilo, bibliotecária da Biblioteca do
+% IMECC.
+%=======================================================================
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+
+%=======================================================================
+%
+% INSTRUÇÕES:
+%
+% Defina logo abaixo, os nomes do aluno e orientador, o título da
+% monografia e a data de entrega. Siga os formatos descritos.
+%
+% Para gerar a folha de rosto, rode, em um terminal, o comando:
+%
+% pdflatex folharosto.tex
+%
+%=======================================================================
+
+%-----------------------------------------------------------------------
+% Defina o NOME DO ALUNO, em letras maiúsculas
+\newcommand{\aluno}{GABRIEL BELÉM BARBOSA}
+
+%-----------------------------------------------------------------------
+% Defina o Nome do Orientador, com as iniciais em letras maiúsculas
+\newcommand{\orientador}{Prof. Ricardo Miranda Martins}
+
+%-----------------------------------------------------------------------
+% Defina o título da monografia, apenas com a primeira letra maiúscula
+\newcommand{\titulo}{Métodos numéricos em equações diferenciais suaves por partes
+em dimensão 2}
+
+%-----------------------------------------------------------------------
+% Caso o projeto tenha contado com financiamento ou bolsa e edite a
+% a linha abaixo. Do contrário, comente-a com um '%' no início da linha
+\newcommand{\bolsa}{Este trabalho foi financiado pela FAPESP, projeto nnnn/2019.} 
+
+%-----------------------------------------------------------------------
+% Defina o ano de entrega da monografia
+\newcommand{\ano}{2021}
+
+%=======================================================================
+%
+% A partir deste ponto, não faça alteração.
+%
+\usepackage{graphicx}
+\usepackage[symbol]{footmisc}
+
+\textwidth=18cm
+\textheight=24.9cm
+\oddsidemargin=-14mm
+\topmargin=-1.5cm
+
+\setlength{\parindent}{0mm}
+
+\begin{document}
+\pagestyle{empty}
+\sffamily
+\begin{center}
+\begin{tabular}{ccc}
+  \begin{minipage}{1.6cm}
+    \includegraphics[width=1.6cm]{unicamp.pdf}
+  \end{minipage}
+  &
+  \begin{minipage}{13.7cm}
+    \centering\small
+  UNIVERSIDADE ESTADUAL DE CAMPINAS\\
+  INSTITUTO DE MATEMÁTICA, ESTATÍSTICA E COMPUTAÇÃO CIENTÍFICA\\
+  DEPARTAMENTO DE MATEMÁTICA APLICADA
+  \end{minipage}
+  &
+  \begin{minipage}{1.6cm}
+    \includegraphics[width=1.6cm]{imecc.pdf}
+  \end{minipage}
+\end{tabular}
+
+
+\vspace{3.5cm}
+
+{\large \aluno}
+
+\vspace{3.5cm}
+
+{
+  \bfseries\Large
+      {\titulo}\ifx\bolsa\undefined\else\footnote{\bolsa}\fi
+}
+\end{center}
+
+\vspace{3.5cm}
+
+\begin{flushright}
+  \begin{minipage}{9cm}
+  Monografia apresentada ao Instituto de Matemática, Estatística e
+  Computação Científica da Universidade Estadual de Campinas como
+  parte dos requisitos para obtenção de créditos na disciplina Projeto
+  Supervisionado, sob a orientação do(a) {\orientador}.
+  \end{minipage}
+\end{flushright}
+
+\vspace{3cm}
+
+\begin{center}
+  Campinas\\
+  \ano
+\end{center}
+  
+\end{document}

@@ -1,0 +1,43 @@
+\documentclass[reprint, amsmath,amssymb,onecolumn,notitlepage, 11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+
+\usepackage{float}
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{hyperref}% add hypertext capabilities
+
+\usepackage[margin=0.6in]{geometry}
+\usepackage{indentfirst}        % indenta primeiro parágrafo
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+
+\usepackage{sectsty}
+\usepackage{xurl}
+\sectionfont{\fontsize{11}{15}\selectfont}
+\usepackage{float}
+
+%INICIO DO DOCUMENTO
+\begin{document}
+\font\myfont=cmr12 at 40pt
+
+
+\title{Relatório 03: Condutividade de componentes} %TÍTULO
+\author{João Pedro K. B. - 237655, Isadora F. T. - 238787, Gabriel B. B. - 234672, Rafael L. M. - 239330} %AUTORES ok
+
+\date{} %omite a geração automática de data abaixo dos autores 
+\maketitle %habilita o campo título e nome dos autores
+
+%Inclui as duas folhas de texto corrido
+\input{texto}
+\clearpage
+
+%Inclui as duas folhas de figuras
+\input{figuras}
+\clearpage
+
+%Inclui a folha de discussão de incertezas
+\input{incertezas}
+
+\end{document}

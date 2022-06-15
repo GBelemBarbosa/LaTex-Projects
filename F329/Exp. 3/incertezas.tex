@@ -1,0 +1,20 @@
+\section{Avaliação e propagação de incertezas}
+
+As fontes de incertezas discutidas e identificas pelo grupo foram:
+\begin{enumerate}
+    \item A incerteza de leitura do amperímetro, com f.d.p. retangular e $a=0.01$ mA (precisão da última casa decimal mostrada pelo amperímetro), é dada por $u_{I1}=\frac{a}{2\sqrt{3}}=0.00289$ mA, a incerteza de calibração do amperímetro, também com f.d.p. retangular com $a$ dado de acordo com o arquivo pdf de exemplos de incertezas disponível no Moodle, é dada por $u_{I2}=\frac{a}{2\sqrt{3}}$ mA. Dessa forma, combinando as duas incertezas, temos que a incerteza da corrente é $u_I=\sqrt{u_{I1}^2+u_{I2}^2}$ mA;
+    \item A incerteza de leitura do voltímetro, com f.d.p. retangular e $a=0.001$ V (precisão da última casa decimal mostrada pelo amperímetro), é dada por $u_{V1}=\frac{a}{2\sqrt{3}}=0.000289$ V, a incerteza de calibração do voltímetro, também com f.d.p. retangular com $a$ dado de acordo com o arquivo pdf de exemplos de incertezas disponível no Moodle, é dada por $u_{V2}=\frac{a}{2\sqrt{3}}$ V. Dessa forma, combinando as duas incertezas, temos que a incerteza da corrente é $u_V=\sqrt{u_{V1}^2+u_{V2}^2}$ V.
+    \item A incerteza de leitura do ohmímetro, com f.d.p. retangular e $a=0.01$ $\Omega$ (precisão da última casa decimal mostrada pelo amperímetro), é dada por $u_{\Omega 1}=\frac{a}{2\sqrt{3}}=0.00289$ $\Omega$, a incerteza de calibração do ohmímetro, também com f.d.p. retangular com $a$ dado de acordo com o arquivo pdf de exemplos de incertezas disponível no Moodle, é dada por $u_{\Omega 1}=\frac{a}{2\sqrt{3}}$ $\Omega$. Dessa forma, combinando as duas incertezas, temos que a incerteza da corrente é $u_\Omega=\sqrt{u_{\Omega 1}^2+u_{\Omega 2}^2}$ $\Omega$;
+\end{enumerate}
+
+A incerteza da resistência para os pontos do gráfico $R\times V$ pode ser calculada com a propagação da Eq.~\ref{resis} como
+\begin{align*}
+\Delta R &=\sqrt{\left(\frac{\partial R}{\partial V} \Delta V\right)^{2}+\left(\frac{\partial R}{\partial A} \Delta A\right)^{2}} \\
+&=\sqrt{(\frac{1}{A} \cdot \Delta V)^{2}+\left(-\frac{V}{A^2} \cdot \Delta A\right)^{2}}.  
+\end{align*}
+
+A incerteza para a resistência calculada através do coeficiente angular pode ser calculada com a propagação da Eq.~\ref{Rx} como
+\begin{align*}
+\Delta R_x &=\frac{\partial R_x}{\partial a} \Delta a \\
+&=\frac{\Delta a}{a^2}.  
+\end{align*}

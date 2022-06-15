@@ -1,0 +1,359 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[portuguese]{babel}
+\usepackage{blindtext}
+\usepackage{mathptmx}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{index}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{nicematrix}
+\usepackage{xcolor}
+\usepackage{soulutf8}
+\usepackage[hyphens]{url}
+\usepackage{bm}
+\usetikzlibrary{matrix}
+\usetikzlibrary{patterns,decorations.pathreplacing}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+\DeclareUnicodeCharacter{2212}{-}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand*\R{\mathbb{R}}
+\newcolumntype{C}{>{\centering\let\newline\\\arraybackslash\ $}m{3cm}<{$}}
+
+
+\begin{document}
+\title{\Large{\textbf{Tarefa 6}}}
+\author{
+\begin{tabular}{c r}
+Gabriel Belém Barbosa&RA: 234672
+\end{tabular}
+}
+\date{23 de Setembro de 2021}
+
+\maketitle
+\let\cleardoublepage\clearpage
+\newpage
+\setcounter{page}{2}
+\tableofcontents
+\newpage
+
+\section{Exercício 1}
+\subsection{Item (a)}
+\subsubsection{Padronização e fase I}
+Colocando o PL na forma padrão, tem-se
+\\$min\text{ }z=-x_1-3x_2$
+\[
+\text{Sujeito a:}\left\{
+\begin{array}{l}
+-3x_1+4x_2+x_3=12\\
+x_1-x_2+x_4=4\\
+x_1+x_2+x_5=6\\
+x_1\geq 0, x_2\geq 0, x_3\geq 0, x_4\geq 0, x_5\geq 0
+\end{array}
+\right.
+\]
+Como todas as desigualdades das restrições eram de menor igual e o vetor \textbf{$b$}$\geq0$, vale que a origem do plano $x_1x_2$ é ponto extremo factível, assim como, portanto, sua base é factível (a base será uma matriz identidade nesse caso, como visto em aula). Logo, a fase I será pulada, e sistema básico associado a origem será o sistema inicial da fase II.
+\subsubsection{Fase II}
+Os sistemas lineares resolvidos a seguir foram efetuados computacionalmente pelo \verb+Octave+ com a função \verb+linsolve+ (usando o atalho $\setminus$).
+\begin{itemize}
+	\item Primeira iteração
+	\begin{itemize}
+		\item Passo 1: Cálculo da solução básica
+\[
+\underbrace{
+\begin{pmatrix}
+1&0&0\\
+0&1&0\\
+0&0&1
+\end{pmatrix}}_B
+\underbrace{
+\begin{pmatrix}
+\hat{x}_{B_1} (x_3)\\
+\hat{x}_{B_2} (x_4)\\
+\hat{x}_{B_3} (x_5)
+\end{pmatrix}}_{\mathbf{\hat{x}_B}}
+=
+\underbrace{
+\begin{pmatrix}
+12\\
+4\\
+6
+\end{pmatrix}}_{b}
+\]
+\[
+\Rightarrow \mathbf{\hat{x}_B} = B \setminus b =
+\begin{pmatrix}
+12\\
+4\\
+6
+\end{pmatrix}
+\geq 0
+\]
+Solução factível; calcular o valor da função na solução básica
+\[
+f(\mathbf{\hat{x}_B})=\mathbf{c_B^T\hat{x}_B}=(0,0,0)(12,4,6)^T=0
+\]
+		\item Passo 2: Cálculo dos custos relativos
+		\begin{itemize}
+\item 2.1: Cálculo do vetor multiplicador simplex
+\[
+\mathbf{\lambda^T}=\mathbf{c_B^TB^{-1}}
+\]
+\[
+\Rightarrow B^T \mathbf{\lambda}=(0, 0, 0)^T
+\]
+\[
+ \Rightarrow \mathbf{\lambda}=B^T \setminus (0,0,0)^T=(0,0,0)^T
+\]
+\item 2.2: Custos relativos\\
+Associado a $x_1$:
+\[
+\hat{c}_{N_1}=c_{N_1}-\lambda^T\mathbf{a_{N_1}}=c_{N_1}=-1
+\]
+Associado a $x_2$:
+\[
+\hat{c}_{N_2}=c_{N_2}-\lambda^T\mathbf{a_{N_2}}=c_{N_2}=-3
+\]
+\item 2.3: Escolha da variável a entrar na base
+\[
+min\{ \hat{c}_{N_j}, j=1,2\}=min\{ -1, -3\}=-3
+\]
+Logo $\hat{x}_{N_2} (x_2)$ entrará na base. 
+		\end{itemize}
+		\item Passo 3: Teste de otimalidade
+\[
+min\{ \hat{c}_{N_j}, j=1,2\}=min\{ -1, -3\}=-3<0
+\]
+A solução básica não é ótima, logo o método prossegue.
+		\item Passo 4: Cálculo da direção simplex
+\[
+\mathbf{y}=B^{-1}\mathbf{a_{N_2}}
+\]
+\[
+\Rightarrow B \mathbf{y}=\mathbf{a_{N_2}}=(4, -1, 1)^T 
+\]
+\[
+\Rightarrow \mathbf{y}= B\setminus(4, -1, 1)^T=(4, -1, 1)^T
+\]
+		\item Passo 5: Determinar passo e variável a sair da base
+\[
+\mathbf{y}\nleq 0
+\]
+Logo o método prossegue. Determinar a variável a sair da base
+\begin{align}
+\hat{\epsilon}&=min\left\{
+\frac{\hat{x}_{B_i}}{y_i},\text{ t.q. }y_i>0, j=1,2,3
+\right\} \nonumber \\
+&=min\left\{
+\frac{\hat{x}_{B_1}}{y_1}, \frac{\hat{x}_{B_3}}{y_3}
+\right\} \nonumber \\
+&=min \left\{
+\frac{12}{4}, \frac{6}{1}
+\right\}
+=3 \nonumber
+\end{align}
+Logo  $\hat{x}_{B_1} (x_3)$ deve sair da base.
+		\item Passo 6: Trocar a primeira coluna de $B$ pela segunda coluna de $N$.
+	\end{itemize}
+	\item Segunda iteração
+	\begin{itemize}
+		\item Passo 1: Cálculo da solução básica
+\[
+\underbrace{
+\begin{pmatrix}
+4&0&0\\
+-1&1&0\\
+1&0&1
+\end{pmatrix}}_B
+\underbrace{
+\begin{pmatrix}
+\hat{x}_{B_1} (x_2)\\
+\hat{x}_{B_2} (x_4)\\
+\hat{x}_{B_3} (x_5)
+\end{pmatrix}}_{\mathbf{\hat{x}_B}}
+=
+\underbrace{
+\begin{pmatrix}
+12\\
+4\\
+6
+\end{pmatrix}}_{b}
+\]
+\[
+\Rightarrow \mathbf{\hat{x}_B} = B \setminus b =
+\begin{pmatrix}
+3\\
+7\\
+3
+\end{pmatrix}
+\geq 0
+\]
+Solução factível; calcular o valor da função na solução básica
+\[
+f(\mathbf{\hat{x}_B})=\mathbf{c_B^T\hat{x}_B}=(-3,0,0)(3,7,3)^T=-9
+\]
+		\item Passo 2: Cálculo dos custos relativos
+		\begin{itemize}
+\item 2.1: Cálculo do vetor multiplicador simplex
+\[
+\mathbf{\lambda^T}=\mathbf{c_B^TB^{-1}}
+\]
+\[
+\Rightarrow B^T \mathbf{\lambda}=(-3, 0, 0)^T
+\]
+\[
+\Rightarrow \mathbf{\lambda}=B^T \setminus(-3, 0, 0)^T=\left(-\frac{3}{4},0,0\right)^T
+\]
+\item 2.2: Custos relativos\\
+Associado a $x_1$:
+\[
+\hat{c}_{N_1}=c_{N_1}-\lambda^T\mathbf{a_{N_1}}=-1-\left(-\frac{3}{4},0,0\right)(-3,1,1)^T=-\frac{13}{4}
+\]
+Associado a $x_3$:
+\[
+\hat{c}_{N_2}=c_{N_2}-\lambda^T\mathbf{a_{N_2}}=-\left(-\frac{3}{4},0,0\right)(1,0,0)^T=\frac{3}{4}
+\]
+\item 2.3: Escolha da variável a entrar na base
+\[
+min\{ \hat{c}_{N_j}, j=1,2\}=min\left\{-\frac{13}{4}, \frac{3}{4}\right\}=-\frac{13}{4}
+\]
+Logo  $\hat{x}_{N_1} (x_1)$ entrará na base. 
+		\end{itemize}
+		\item Passo 3: Teste de otimalidade
+\[
+min\{ \hat{c}_{N_j}, j=1,2\}=min\left\{-\frac{13}{4}, \frac{3}{4}\right\}=-\frac{13}{4}<0
+\]
+A solução básica não é ótima, logo o método prossegue.
+		\item Passo 4: Cálculo da direção simplex
+\[
+\mathbf{y}=B^{-1}\mathbf{a_{N_2}}
+\]
+\[
+\Rightarrow B \mathbf{y}=\mathbf{a_{N_2}}=(-3,1,1)^T
+\]
+\[
+ \Rightarrow \mathbf{y}=B\setminus(-3,1,1)^T=\frac{1}{4}(-3, 1, 7)^T
+\]
+		\item Passo 5: Determinar passo e variável a sair da base
+\[
+\mathbf{y}\nleq 0
+\]
+Logo o método prossegue. Determinar a variável a sair da base
+\begin{align}
+\hat{\epsilon}&=min\left\{
+\frac{\hat{x}_{B_i}}{y_i},\text{ t.q. }y_i>0, j=1,2,3
+\right\} \nonumber \\
+&=min\left\{
+\frac{\hat{x}_{B_2}}{y_2}, \frac{\hat{x}_{B_3}}{y_3}
+\right\} \nonumber \\
+&=min \left\{
+\frac{7}{\frac{1}{4}}, \frac{3}{\frac{7}{4}}
+\right\}
+=\frac{12}{7} \nonumber
+\end{align}
+Logo  $\hat{x}_{B_3} (x_5)$ deve sair da base.
+		\item Passo 6: Trocar a terceira coluna de $B$ pela primeira coluna de $N$.
+	\end{itemize}
+\item Terceira iteração
+	\begin{itemize}
+		\item Passo 1: Cálculo da solução básica
+\[
+\underbrace{
+\begin{pmatrix}
+4&0&-3\\
+-1&1&1\\
+1&0&1
+\end{pmatrix}}_B
+\underbrace{
+\begin{pmatrix}
+\hat{x}_{B_1} (x_2)\\
+\hat{x}_{B_2} (x_4)\\
+\hat{x}_{B_3} (x_1)
+\end{pmatrix}}_{\mathbf{\hat{x}_B}}
+=
+\underbrace{
+\begin{pmatrix}
+12\\
+4\\
+6
+\end{pmatrix}}_{b}
+\]
+\[
+\Rightarrow \mathbf{\hat{x}_B} =  B \setminus b = \frac{1}{7}
+\begin{pmatrix}
+30\\
+46\\
+12
+\end{pmatrix}
+\geq 0
+\]
+Solução factível; calcular o valor da função na solução básica
+\[
+f(\mathbf{\hat{x}_B})=\mathbf{c_B^T\hat{x}_B}=(-3,0,-1) \frac{1}{7}(30,46,12)^T=-\frac{102}{7}
+\]
+		\item Passo 2: Cálculo dos custos relativos
+		\begin{itemize}
+\item 2.1: Cálculo do vetor multiplicador simplex
+\[
+\mathbf{\lambda^T}=\mathbf{c_B^TB^{-1}}
+\]
+\[
+\Rightarrow B^T \mathbf{\lambda}=(-3, 0, -1)^T
+\]
+\[
+\Rightarrow \mathbf{\lambda}=B^T \setminus (-3, 0, -1)^T=-\frac{1}{7}(2, 0, 13)^T
+\]
+\item 2.2: Custos relativos\\
+Associado a $x_5$:
+\[
+\hat{c}_{N_1}=c_{N_1}-\lambda^T\mathbf{a_{N_1}}=\frac{1}{7}(2, 0, 13)(0,0,1)^T=\frac{13}{7}
+\]
+Associado a $x_3$:
+\[
+\hat{c}_{N_2}=c_{N_2}-\lambda^T\mathbf{a_{N_2}}=\frac{1}{7}(2, 0, 13)(1,0,0)^T=\frac{2}{7}
+\]
+\item 2.3: Escolha da variável a entrar na base
+\[
+min\{ \hat{c}_{N_j}, j=1,2\}=min\left\{\frac{13}{7}, \frac{2}{7}\right\}=\frac{2}{7}
+\]
+Logo  $\hat{x}_{N_2} (x_3)$ entrará na base. 
+		\end{itemize}
+		\item Passo 3: Teste de otimalidade
+\[
+min\{ \hat{c}_{N_j}, j=1,2\}=min\left\{\frac{13}{7}, \frac{2}{7}\right\}=\frac{2}{7}\geq0
+\]
+A solução básica é ótima, logo o método para.
+	\end{itemize}
+\end{itemize}
+A solução ótima é $\mathbf{x*}=\frac{1}{7}(12,30,0,46,0)^T$, e o valor ótimo da função é $f(\mathbf{x*})=-\frac{102}{7}$.
+\subsection{Item (b)}
+Como deseja-se minimizar a função objetivo, é necessário viajar na direção contrário ao gradiente. A curva de nível da função objetivo intersecta a região de factibilidade por último em $\mathbf{x*}=\frac{1}{7}(12,30)^T$, como pode ser visto no gráfico abaixo, e cujo valor ótimo é, da função objetivo, $f(\mathbf{x*})=\frac{1}{7}(-12-3\cdot 30)=-\frac{102}{7}$. Esse resultado condiz com a solução obtida pelo algoritmo simplex no item (a).
+\begin{table}[H]
+\centering
+\begin{figure}[H]
+    \centering
+    \caption{\label{fig:1} Resolução gráfica}
+    \includegraphics[width=11cm]{b}
+\end{figure}
+\small
+Região de factibilidade em vermelho, vetor gradiente C e solução ótima x* denotados e curvas de nível pontilhadas.
+\end{table}
+Abaixo o comportamento do algoritmo simplex visto no item (a) pode ser acompanhado graficamente, com as soluções básicas (começando com X0, a solução básica factível inicial escolhida na seção 1.1.1, e terminando em X2, a solução ótima do PL inicial) e o movimento de cada iteração representado por setas.
+\begin{table}[H]
+\centering
+\begin{figure}[H]
+    \centering
+    \caption{\label{fig:2} Comportamento do algoritmo}
+    \includegraphics[width=11cm]{c}
+\end{figure}
+\end{table}
+Pode ser visto que o algoritmo se move de modo semelhante a direção de menos o gradiente (vide figura 1), priorizando o movimento em $x_2$ antes de $x_1$ (na primeira iteração) pela escolha do menor custo reduzido, o que pode ser correlacionado com o fato de que o vetor menos gradiente, $-C=(1, 3)^T$, é maior em sua componente $x_2$ do que em $x_1$.
+\end{document}

@@ -1,0 +1,426 @@
+\documentclass{article}
+\usepackage[portuguese]{babel}
+\usepackage{blindtext}
+\usepackage{mathptmx}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{index}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{nicematrix}
+\usepackage{xcolor}
+\usepackage{soulutf8}
+\usepackage[hyphens]{url}
+\usepackage{bm}
+\usetikzlibrary{matrix}
+\usetikzlibrary{patterns,decorations.pathreplacing}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+\DeclareUnicodeCharacter{2212}{-}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand*\R{\mathbb{R}}
+\newcolumntype{C}{>{\centering\let\newline\\\arraybackslash\ $}m{3cm}<{$}}
+
+
+\begin{document}
+\title{\Large{\textbf{Tarefa 10}}}
+\author{
+\begin{tabular}{c r}
+Gabriel Belém Barbosa&RA: 234672
+\end{tabular}
+}
+\date{21 de Novembro de 2021}
+
+\maketitle
+\let\cleardoublepage\clearpage
+\newpage
+\setcounter{page}{2}
+\tableofcontents
+\newpage
+\section{Fase I}
+Colocando o PL na forma padrão, tem-se
+$$
+\begin{aligned}
+&\min f(\mathbf{x})=x_{1}+12 x_{2}+3 x_{3}+4 x_{4} \\
+&\text {Sujeito a: }\left\{\begin{array}{l}
+x_{1}+3 x_{2}-2 x_{3}-2 x_{4}-x_{5}=2 \\
+-x_{1}+2 x_{2}-3 x_{3}+3 x_{4}-x_{6}=1 \\
+x_{1, \ldots, 6} \geq 0
+\end{array}\right.
+\end{aligned}
+$$
+Cujo dual é
+$$
+\begin{aligned}
+\max g(\lambda)=& 2 \lambda_{1}+\lambda_{2} \\
+\text {Sujeito a: } &\left\{\begin{array}{l}
+\lambda_{1}-\lambda_{2} \leq 1 \\
+3 \lambda_{1}+2 \lambda_{2} \leq 12 \\
+-2 \lambda_{1}-3 \lambda_{2} \leq 3 \\
+-2 \lambda_{1}+3 \lambda_{2} \leq 4 \\
+-\lambda_{1} \leq 0 \Rightarrow \lambda_{1} \geq 0 \\
+-\lambda_{2} \leq 0 \Rightarrow \lambda_{2} \geq 0
+\end{array}\right.
+\end{aligned}
+$$
+Para a primeira iteração, $\lambda=(0,0)^{T}$ é claramente uma solução factível para o dual, isto é
+$$
+B=\left(\begin{array}{ll}
+a_{5} & a_{6}
+\end{array}\right)=\left(\begin{array}{cc}
+-1 & 0 \\
+0 & -1
+\end{array}\right)
+$$
+\section{Fase II}
+\begin{itemize}
+\item Primeira iteração
+\begin{itemize}
+\item Passo 1: Cálculo da solução básica dual e custos relativos
+$$
+\begin{gathered}
+\underbrace{\left(\begin{array}{cc}
+-1 & 0 \\
+0 & -1
+\end{array}\right)}_{\mathbf{B}^{T}} \underbrace{\left(\begin{array}{l}
+\hat{\lambda}_{B_{1}}\left(\lambda_{1}\right) \\
+\hat{\lambda}_{B_{2}}\left(\lambda_{2}\right)
+\end{array}\right)}_{\hat{\lambda}_{\mathbf{B}}}=\underbrace{\left(\begin{array}{l}
+0 \\
+0
+\end{array}\right)}_{\mathbf{c}_{\mathbf{B}}} \\
+\Rightarrow \hat{\lambda}_{\mathbf{B}}=B^{T} \backslash \mathbf{c}_{\mathbf{B}}=\left(\begin{array}{l}
+0 \\
+0
+\end{array}\right) \geq 0
+\end{gathered}
+$$
+Solução factível; cálculo dos custos relaticos: 
+
+Associado a $x_{1}$ :
+$$
+\hat{c}_{\mathbf{N}_{1}}=c_{\mathbf{N}_{1}}-\hat{\lambda}_{\mathbf{B}}^{T} \mathbf{a}_{\mathbf{N}_{1}}=1
+$$
+Associado a $x_{2}$ :
+$$
+\hat{c}_{\mathbf{N}_{2}}=c_{\mathbf{N}_{2}}-\hat{\lambda}_{\mathbf{B}}^{T} \mathbf{a}_{\mathbf{N}_{2}}=12
+$$
+Associado a $x_{3}$ :
+$$
+\hat{c}_{\mathbf{N}_{3}}=c_{\mathbf{N}_{3}}-\hat{\lambda}_{\mathbf{B}}^{T} \mathbf{a}_{\mathbf{N}_{3}}=3
+$$
+Associado a $x_{4}$ :
+$$
+\hat{c}_{\mathbf{N}_{4}}=c_{\mathbf{N}_{4}}-\hat{\lambda}_{\mathbf{B}}^{T} \mathbf{a}_{\mathbf{N}_{4}}=4
+$$
+\item Passo 2: Teste de otimalidade
+\begin{itemize}
+\item 2.1: Cálculo da solução básica primal
+\[
+\underbrace{
+\begin{pmatrix}
+-1&0\\
+0&-1
+\end{pmatrix}}_{\mathbf{B}}
+\underbrace{
+\begin{pmatrix}
+\hat{x}_{\mathbf{B}_1} (x_5)\\
+\hat{x}_{\mathbf{B}_2} (x_6)
+\end{pmatrix}}_{\mathbf{\hat{x}_\mathbf{B}}}
+=
+\underbrace{
+\begin{pmatrix}
+2\\
+1
+\end{pmatrix}}_{\mathbf{b}}
+\]
+\[
+\Rightarrow \mathbf{\hat{x}_\mathbf{B}} = \mathbf{B} \setminus \mathbf{b} =
+\begin{pmatrix}
+-2\\
+-1
+\end{pmatrix}
+\ngeq 0
+\]
+\item 2.2: Determinar variável a sair da base\\
+\[
+\hat{x}_{\mathbf{B}_l}=min\{ \hat{x}_{\mathbf{B}_i}, i=1,2\}=min\{-2, -1\}=-2
+\]
+Como $\hat{x}_\mathbf{B_l}<0$, o método prossegue, e $\hat{x}_\mathbf{B_1}$ sairá da base.
+		\end{itemize}
+		\item Passo 3: Cálculo da direção dual simplex
+\[
+\underbrace{
+\begin{pmatrix}
+-1&0\\
+0&-1
+\end{pmatrix}}_{\mathbf{B}^T}
+\mathbf{\eta}_1
+=
+\underbrace{
+\begin{pmatrix}
+-1\\
+0
+\end{pmatrix}}_{-\mathbf{e}_1}
+\]
+\[
+\Rightarrow \mathbf{\eta}_1 = \mathbf{B} \setminus \mathbf{e}_1 =
+\begin{pmatrix}
+2\\
+0
+\end{pmatrix}
+\]
+		\item Passo 4: Determinar passo e variável a entrar na base
+\begin{align*}
+\widehat{\delta}&=\frac{\widehat{c}_{\mathbf{N}_k}}{\eta_\ell^T \mathbf{a}_{\mathbf{N}_k}}
+=\min_{j=1,...,n-m}\left\{\frac{\widehat{c}_{\mathbf{N}_j}}{\eta_1^T \mathbf{a}_{\mathbf{N}_j}} \text { tal que } \eta_1^T \mathbf{a}_{\mathbf{N}_j}>0\right\}\\
+&=\min \left\{
+\frac{\widehat{c}_{\mathbf{N}_1}}{\eta_{1}^T \mathbf{a}_{\mathbf{N}_1}}, \frac{\widehat{c}_{\mathbf{N}_2}}{\eta_{1}^T \mathbf{a}_{\mathbf{N}_2}}
+\right\}\\
+&=\min \left\{
+\frac{1}{2}, \frac{12}{6}
+\right\}=\frac{1}{2}
+\end{align*}
+Logo $x_{\mathbf{N}_1}$ ($x_1$) entrará na base.
+		\item Passo 5: Nova partição básica
+
+Troca-se a primeira coluna de B pela primeira coluna de N.
+	\end{itemize}
+	\item Segunda iteração
+	\begin{itemize}
+\item Passo 1: Cálculo da solução básica dual e custos relativos
+$$
+\begin{gathered}
+\underbrace{\left(\begin{array}{cc}
+1 & -1 \\
+0 & -1
+\end{array}\right)}_{\mathbf{B}^{T}} \underbrace{\left(\begin{array}{l}
+\hat{\lambda}_{B_{1}}\left(\lambda_{1}\right) \\
+\hat{\lambda}_{B_{2}}\left(\lambda_{2}\right)
+\end{array}\right)}_{\hat{\lambda}_{\mathbf{B}}}=\underbrace{\left(\begin{array}{l}
+1 \\
+0
+\end{array}\right)}_{\mathbf{c}_{\mathbf{B}}} \\
+\Rightarrow \hat{\lambda}_{\mathbf{B}}=B^{T} \backslash \mathbf{c}_{\mathbf{B}}=\left(\begin{array}{l}
+1 \\
+0
+\end{array}\right) \geq 0
+\end{gathered}
+$$
+Solução factível; cálculo dos custos relaticos: 
+
+Associado a $x_{5}$ :
+$$
+\hat{c}_{\mathbf{N}_{1}}=c_{\mathbf{N}_{1}}-\hat{\lambda}_{\mathbf{B}}^{T} \mathbf{a}_{\mathbf{N}_{1}}=0-(1,0)
+\begin{pmatrix}
+-1\\
+0
+\end{pmatrix}
+=1
+$$
+Associado a $x_{2}$ :
+$$
+\hat{c}_{\mathbf{N}_{2}}=c_{\mathbf{N}_{2}}-\hat{\lambda}_{\mathbf{B}}^{T} \mathbf{a}_{\mathbf{N}_{2}}=12-(1,0)
+\begin{pmatrix}
+3\\
+2
+\end{pmatrix}
+=9
+$$
+Associado a $x_{3}$ :
+$$
+\hat{c}_{\mathbf{N}_{3}}=c_{\mathbf{N}_{3}}-\hat{\lambda}_{\mathbf{B}}^{T} \mathbf{a}_{\mathbf{N}_{3}}=3-(1,0)
+\begin{pmatrix}
+-2\\
+-3
+\end{pmatrix}
+=5
+$$
+Associado a $x_{4}$ :
+$$
+\hat{c}_{\mathbf{N}_{4}}=c_{\mathbf{N}_{4}}-\hat{\lambda}_{\mathbf{B}}^{T} \mathbf{a}_{\mathbf{N}_{4}}=4-(1,0)
+\begin{pmatrix}
+-2\\
+3
+\end{pmatrix}
+=6
+$$
+\item Passo 2: Teste de otimalidade
+\begin{itemize}
+\item 2.1: Cálculo da solução básica primal
+\[
+\underbrace{
+\begin{pmatrix}
+1&0\\
+-1&-1
+\end{pmatrix}}_{\mathbf{B}}
+\underbrace{
+\begin{pmatrix}
+\hat{x}_{\mathbf{B}_1} (x_1)\\
+\hat{x}_{\mathbf{B}_2} (x_6)
+\end{pmatrix}}_{\mathbf{\hat{x}_\mathbf{B}}}
+=
+\underbrace{
+\begin{pmatrix}
+2\\
+1
+\end{pmatrix}}_{\mathbf{b}}
+\]
+\[
+\Rightarrow \mathbf{\hat{x}_\mathbf{B}} = \mathbf{B} \setminus \mathbf{b} =
+\begin{pmatrix}
+2\\
+-3
+\end{pmatrix}
+\ngeq 0
+\]
+\item 2.2: Determinar variável a sair da base\\
+\[
+\hat{x}_{\mathbf{B}_l}=min\{ \hat{x}_{\mathbf{B}_i}, i=1,2\}=min\{2, -3\}=-3
+\]
+Como $\hat{x}_\mathbf{B_l}<0$, o método prossegue, e $\hat{x}_\mathbf{B_2}$ sairá da base.
+		\end{itemize}
+		\item Passo 3: Cálculo da direção dual simplex
+\[
+\underbrace{
+\begin{pmatrix}
+1&-1\\
+0&-1
+\end{pmatrix}}_{\mathbf{B}^T}
+\mathbf{\eta}_2
+=
+\underbrace{
+\begin{pmatrix}
+0\\
+-1
+\end{pmatrix}}_{-\mathbf{e}_2}
+\]
+\[
+\Rightarrow \mathbf{\eta}_2 = \mathbf{B} \setminus \mathbf{e}_2 =
+\begin{pmatrix}
+1\\
+1
+\end{pmatrix}
+\]
+		\item Passo 4: Determinar passo e variável a entrar na base
+\begin{align*}
+\widehat{\delta}&=\frac{\widehat{c}_{\mathbf{N}_k}}{\eta_\ell^T \mathbf{a}_{\mathbf{N}_k}}
+=\min_{j=1,...,n-m}\left\{\frac{\widehat{c}_{\mathbf{N}_j}}{\eta_2^T \mathbf{a}_{\mathbf{N}_j}} \text { tal que } \eta_2^T \mathbf{a}_{\mathbf{N}_j}>0\right\}\\
+&=\min \left\{
+\frac{\widehat{c}_{\mathbf{N}_2}}{\eta_{2}^T \mathbf{a}_{\mathbf{N}_2}}, \frac{\widehat{c}_{\mathbf{N}_4}}{\eta_{2}^T \mathbf{a}_{\mathbf{N}_4}}
+\right\}\\
+&=\min \left\{
+\frac{9}{5}, \frac{6}{1}
+\right\}=\frac{9}{5}
+\end{align*}
+Logo $x_{\mathbf{N}_2}$ ($x_2$) entrará na base.
+		\item Passo 5: Nova partição básica
+
+Troca-se a segunda coluna de B pela segunda coluna de N.
+	\end{itemize}
+	\item Terceira iteração
+	\begin{itemize}
+\item Passo 1: Cálculo da solução básica dual e custos relativos
+$$
+\begin{gathered}
+\underbrace{\left(\begin{array}{cc}
+1 & -1 \\
+3 & 2
+\end{array}\right)}_{\mathbf{B}^{T}} \underbrace{\left(\begin{array}{l}
+\hat{\lambda}_{B_{1}}\left(\lambda_{1}\right) \\
+\hat{\lambda}_{B_{2}}\left(\lambda_{2}\right)
+\end{array}\right)}_{\hat{\lambda}_{\mathbf{B}}}=\underbrace{\left(\begin{array}{l}
+1 \\
+12
+\end{array}\right)}_{\mathbf{c}_{\mathbf{B}}} \\
+\Rightarrow \hat{\lambda}_{\mathbf{B}}=B^{T} \backslash \mathbf{c}_{\mathbf{B}}=\left(\begin{array}{l}
+\frac{14}{5} \\
+\frac{9}{5}
+\end{array}\right) \geq 0
+\end{gathered}
+$$
+Solução factível; cálculo dos custos relaticos: 
+
+Associado a $x_{5}$ :
+$$
+\hat{c}_{\mathbf{N}_{1}}=c_{\mathbf{N}_{1}}-\hat{\lambda}_{\mathbf{B}}^{T} \mathbf{a}_{\mathbf{N}_{1}}=0-\left(\frac{14}{5},\frac{9}{5}\right)
+\begin{pmatrix}
+-1\\
+0
+\end{pmatrix}
+=\frac{14}{5}
+$$
+Associado a $x_{2}$ :
+$$
+\hat{c}_{\mathbf{N}_{2}}=c_{\mathbf{N}_{2}}-\hat{\lambda}_{\mathbf{B}}^{T} \mathbf{a}_{\mathbf{N}_{2}}=0-\left(\frac{14}{5},\frac{9}{5}\right)
+\begin{pmatrix}
+0\\
+-1
+\end{pmatrix}
+=\frac{9}{5}
+$$
+Associado a $x_{3}$ :
+$$
+\hat{c}_{\mathbf{N}_{3}}=c_{\mathbf{N}_{3}}-\hat{\lambda}_{\mathbf{B}}^{T} \mathbf{a}_{\mathbf{N}_{3}}=3-\left(\frac{14}{5},\frac{9}{5}\right)
+\begin{pmatrix}
+-2\\
+-3
+\end{pmatrix}
+=14
+$$
+Associado a $x_{4}$ :
+$$
+\hat{c}_{\mathbf{N}_{4}}=c_{\mathbf{N}_{4}}-\hat{\lambda}_{\mathbf{B}}^{T} \mathbf{a}_{\mathbf{N}_{4}}=4-\left(\frac{14}{5},\frac{9}{5}\right)
+\begin{pmatrix}
+-2\\
+3
+\end{pmatrix}
+=\frac{21}{5}
+$$
+\item Passo 2: Teste de otimalidade
+\begin{itemize}
+\item 2.1: Cálculo da solução básica primal
+\[
+\underbrace{
+\begin{pmatrix}
+1&3\\
+-1&2
+\end{pmatrix}}_{\mathbf{B}}
+\underbrace{
+\begin{pmatrix}
+\hat{x}_{\mathbf{B}_1} (x_1)\\
+\hat{x}_{\mathbf{B}_2} (x_2)
+\end{pmatrix}}_{\mathbf{\hat{x}_\mathbf{B}}}
+=
+\underbrace{
+\begin{pmatrix}
+2\\
+1
+\end{pmatrix}}_{\mathbf{b}}
+\]
+\[
+\Rightarrow \mathbf{\hat{x}_\mathbf{B}} = \mathbf{B} \setminus \mathbf{b} =
+\begin{pmatrix}
+\frac{1}{5}\\
+\frac{3}{5}
+\end{pmatrix}
+\geq 0
+\]
+\item 2.2: Determinar variável a sair da base\\
+\[
+\hat{x}_{\mathbf{B}_l}=min\{ \hat{x}_{\mathbf{B}_i}, i=1,2\}=min\left\{\frac{1}{5}, \frac{3}{5}\right\}=\frac{1}{5}
+\]
+Como $\hat{x}_\mathbf{B_l}\geq0$, o método para.
+		\end{itemize}
+		
+	\end{itemize}
+	\end{itemize}	
+\section{Análise de solução}
+A solução ótima do PL primal é $\mathbf{x*}=\left(\frac{1}{5}, \frac{3}{5}\right)^T$, e o valor ótimo da função do primal é $f(\mathbf{x*})=\frac{37}{5}$, e, como visto, $\lambda*=\left(\frac{14}{5}, \frac{9}{5}\right)^T$, logo o valor ótimo da função do dual é $g(\lambda*)=\frac{37}{5}$, o que coincide com o do primal e valida o resultado. Vale ressaltar que $\left(\frac{14}{5}, \frac{9}{5}\right)^T$ é o vetor multiplciador simplex na solução do primal, e como este é não negativo, caso o método usado fosse o primal simplex e ele se encontrasse nesse ponto, de fato não haveria direção a se tomar nessa iteração e o método pararia.
+\end{document}

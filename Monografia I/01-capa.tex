@@ -1,0 +1,59 @@
+%=======================================================================
+% CAPA DA MONOGRAFIA
+%
+% A capa contém a identificação da universidade, instituto e
+% departamento, o nome do autor do trabalho, o título da monografia,
+% o local e data de apresentação.
+%
+% Não altere este arquivo. As informações que aparecem aqui são
+% definidas no arquivo monografia.tex.
+%=======================================================================
+\clearpage
+
+\newgeometry{textwidth=180mm,
+  textheight=259mm,
+  left=15mm,
+  top=10mm
+  }
+
+\setlength{\parindent}{0mm}
+
+{
+\thispagestyle{empty}
+\sffamily
+\begin{center}
+\begin{tabular}{ccc}
+  \begin{minipage}{1.6cm}
+    \includegraphics[width=1.6cm]{unicamp.pdf}
+  \end{minipage}
+  &
+  \begin{minipage}{13.7cm}
+    \centering\small
+  UNIVERSIDADE ESTADUAL DE CAMPINAS\\
+  INSTITUTO DE MATEMÁTICA, ESTATÍSTICA E COMPUTAÇÃO CIENTÍFICA\\
+  DEPARTAMENTO DE MATEMÁTICA APLICADA
+  \end{minipage}
+  &
+  \begin{minipage}{1.6cm}
+    \includegraphics[width=1.6cm]{imecc.pdf}
+  \end{minipage}
+\end{tabular}
+
+\vspace{3.5cm}
+
+{\large \aluno}
+
+\vspace{3.5cm}
+
+{
+  \bfseries\Large\titulo
+}
+\end{center}
+
+\vspace*{10cm}
+
+\begin{center}
+  Campinas\\
+  \data
+\end{center}
+}

@@ -1,0 +1,24 @@
+\section{Avaliação e propagação de incertezas}
+
+As fontes de incertezas discutidas e identificas pelo grupo foram:
+\begin{enumerate}
+    \item As coordenadas $(x,y)$, que dependem do posicionamento da ponteira sobre o papel milimetrado com uma f.d.p. triangular (para o papel milimetrado $a=1$ mm, incerteza padrão $u_{mili}=\frac{a}{2\sqrt{6}}=0.20$ mm). Além disso há a incerteza associada ao raio da ponteira, que foi medido como sendo $1.50\pm0.02$ mm com um paquímetro (cuja incerteza $u_{paq}$ foi calculada analogamente ao caso do papel milimetrado); essa incerteza pode ser obtida com a medida mais provável do raio ($\frac{a}{2}$) dividido por $\sqrt{6}$ por se tratar de uma f.d.p. também triangular, resultando em $u_{raio}=0.61$ mm. Combinando as incertezas obtém-se a incerteza total em cada eixo de $u_t=\sqrt{u_{mili}^2+u_{raio}^2+u_{paq}^2}=\sqrt{0.20^2+0.61^2+0.02^2}=0.64$ mm;
+    \item A medida digital do voltímetro, com f.d.p. retangular e $a=0.01$ V (precisão da última casa decimal mostrada pelo voltímetro), cuja incerteza padrão é $u_V=\frac{a}{2\sqrt{3}}=0.004$ V;
+    \item A influência na leitura da inclinação da ponteira em relação ao plano, que foi medida ao se inclinar a ponteira o máximo possível permitido pela distancia dos eletrodos (sem encostar nestes) ao longo da direção de maior variação do potencial, e com a ponteira fixa no centro entre os eletrodos no eixo de simetria. O valor da máxima variação foi de $0.318\pm0.006$ V (incerteza mais à frente);
+    \item Foi assumido que o posicionamento dos eletrodos é ideal, isto é, um posicionado exatamente sobre o eixo $x$ e o outro paralelo a este eixo na altura $y=14$ cm, porém é observado que este não é o caso e, portanto, mais uma possível fonte de incerteza.
+\end{enumerate}
+
+A incerteza da diferença dos dois potenciais para averiguar o efeito da inclinação da ponteira é de $\sqrt{u_{V}^2+u_V^2}=0.006$, isto é, a composição da incerteza de cada medida, uma vez que a posição $(x,y)$ não foi variada.
+
+Para o cálculo da incerteza do módulo do campo elétrico para a configuração 2(a) foi usada a seguinte fórmula:
+
+\begin{align*}
+u_{|\vec{E}|_s} &=\sqrt{\left(\frac{\partial |\vec{E}|_s}{\partial V_f} \Delta V_f\right)^{2}+\left(\frac{\partial |\vec{E}|_s}{\partial V_i} \Delta V_i\right)^{2}+\left(\frac{\partial |\vec{E}|_s}{\partial s_f} \Delta s_f\right)^{2}+\left(\frac{\partial |\vec{E}|_s}{\partial s_i} \Delta s_i\right)^{2}} \\
+&=\sqrt{\splitfrac{(-(1 /(s_f-s_i)) \cdot \Delta V)^{2}+(1 /(s_f-s_i) \cdot \Delta V_i)^{2}+\left((V_f-V_i) /(s_f-s_i)^{2} \cdot \Delta s_f\right)^{2}}{+\left(-\left((V_f-V_i) /(s_f-s_i)^{2}\right) \cdot \Delta s_i\right)^{2}}} \\
+&=0.0113181934 \\
+&=1.13181934 \times 10^{-2} \\
+&\simeq1 \times 10^{-2}
+\end{align*}
+
+Repetindo o processo para configuração 2(b), a incerteza do módulo do campo elétrico encontrada foi $1.13260493 \times 10^{-2}$, e, por último, para a configuração 2(c), o valor de incerteza do módulo do campo elétrico encontrada foi de $1.13137108\times 10^{-2}$.
+

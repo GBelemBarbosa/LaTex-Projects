@@ -1,0 +1,49 @@
+\section{Experimento}
+Com o intuito de atingir os objetivos propostos no roteiro experimental, foi divisado o seguinte procedimento:
+\begin{enumerate}
+    \item É medido o raio de uma bobina de Helmholtz (como é especificada no roteiro experimental) com a utilização de um paquímetro (como a bobina não é ideal, a medida tirada foi de centro da largura dos fios a centro da largura dos fios entre as 2 bobinas, que equivale ao raio $R$ por construção e definição de uma bobina de Helmholtz), assim como as dimensões (diâmetro $2r$ e comprimento $L$) do ímã;
+    \item O ímã é pesado em uma balança digital para obter-se sua massa $m$;
+    \item Um celular com câmera é posicionado sobre o suporte no qual é preso o ímã;
+    \item Objetos metálicos são afastados e a bobina alinhada de forma que o ímã em seu centro (pendurado de um suporte entre as bobinas que também foi alinhado com marcações nas próprias bobinas que identificam seus ápices) esteja paralelo ao seu eixo central, o que garante que o último esteja bem alinhado com o campo magnético da Terra (existe ainda a influência de objetos metálicos como as pernas da mesa, o suporte da bobina, os demais componentes do circuito e o celular, que previnem o alinhamento correto do ímã com esse campo e são mais fontes de incerteza que não serão tratadas e minimizadas nesse experimento);
+    \item O circuito é montado, seguindo o esquema fornecido no roteiro experimental, e a fonte é ligada e ajustada para fornecer uma voltagem suficiente e uma amperagem de cerca de 250 mA (valor em módulo escolhido para evitar super aquecimento dada as especificações da resistência utilizada, de acordo com o roteiro);
+    \item O ímã é deslocado levemente em uma de suas extremidades com a ajuda de uma régua e um suporte evitando-se alterar sua altura para prevenir a existência de oscilações causadas pela gravidade. O suporte que limita a inclinação da régua (e portanto do ímã) foi posicionado de forma que o ímã não efetue oscilações de mais de 14º (ângulo limite para o qual a aproximação para pequenos ângulos usada nas contas tenha uma margem de erro tolerável) e para permitir uma fácil reconfiguração das condições inicias. Ainda assim, o ângulo inicial (que não é definido com exatidão, só limitado) é uma outra variável capaz de produzir alterações nos resultados que pode ser considerada como outra fonte de incerteza, mas que não foi explorada nesse experimento;
+    \item Um vídeo é gravado de algumas oscilações do ímã para a obtenção da frequência usando o software Tracker e o valor mostrado no amperímetro é registrada;
+    \item A amperagem na fonte é diminuída em aproximadamente 25 mA e os 2 procedimentos acima são repetidos;
+    \item Após ser atingida uma amperagem próxima de nula, o sentido da corrente é invertido ao se trocarem os fios na fonte de posição, e os 3 procedimentos anteriores são repetidos até ser atingida a amperagem de cerca de -250 mA;
+\end{enumerate}
+
+A variável dependente do experimento é a frequência de oscilação do ímã, que depende da amperagem fornecida, do nivelamento do ímã e sua posição em relação ao eixo central da bobina e o alinhamento entre estes (e consequentemente o alinhamento do centro da bobina com o campo magnético da Terra), o número de voltas da bobina e seu raio, do momento de dipolo magnético $\mu$ do ímã e seu raio e comprimento, além da posição do próprio experimento na Terra, que afeta a constante experimental do campo magnético da Terra. As variáveis independentes são aquelas mencionadas na dependência da frequência. Outras variáveis independentes cujo o efeito não pôde ser explorado é a a amplitude inicial de oscilação do ímã que influencia nas aproximações utilizadas (e que foi limitada), e a concentração e posição de materiais magnéticos na proximidade do experimento (cujo efeito foi minimizado afastando-se materiais metálicos).
+
+Como a frequência do ímã não depende linearmente da corrente foi efetuada a seguinte linearização
+\begin{equation}
+    f^{2}=\frac{\mu}{4 \pi^{2} m_{I}}\left[\left(\frac{8 \mu_{0} N I}{5^{3 / 2} R}\right) \pm B_{T}\right],
+    \label{eq1}
+\end{equation}
+seguindo a mesma nomenclatura e unidades de medida apresentadas no roteiro, e o sinal do campo variando com o sentido do campo da bobina com o da Terra, que é determinado pelo sinal da corrente.
+
+O momento de dipolo $\mu$ pode ser obtido igualando-se o coeficiente angular $a$ do ajuste linear dos dados obtido com o coeficiente angular da Eq.~\ref{eq1}, de tal forma se obtendo
+\begin{equation}
+    \mu=a\frac{4 \pi^{2} m_{I}5^{3 / 2} R}{8 \mu_{0} N}.
+    \label{eq2}
+\end{equation}
+
+Da mesma forma, porém com o coeficiente linear $b$ e o coeficiente linear da Eq.~\ref{eq1}, o campo magnético da Terra pode ser obtido como
+\begin{equation}
+    B_T=\pm b\frac{4 \pi^{2} m_{I}}{ \mu}.
+    \label{eq3}
+\end{equation}
+
+O momento de inércia do ímã $m_l$ foi calculado como sendo $(2.74\pm 0.02)\times 10^{-7}$ kg$\cdot$ m$^2$.
+
+Como pode ser visto pela Fig.~\ref{fig:1}, os dados linearizados possuem um padrão bastante linear, o que indica uma dependência se não linear, pelo menos desprezivelmente não linear para o intervalo amostral, com a reta para correntes positivas crescente e para negativas decrescente. Não há valores que desviem em excesso do ajuste linear feito pelo software que poderiam ser considerados espúrios. O software Origin foi então usado para efetuar o ajuste linear dos dados, levando em consideração as incertezas pontuais.
+
+Como pode ser visto na Tab.~\ref{tab:1}, os valores para momento de dipolo do ímã foram bastante parecidos entre as retas, porém eles não estão no intervalo de incerteza um do outro, que foi bastante controlado para ambos. Quando se trata do valor do campo magnético da terra, porém, os resultados foram diversos. Para a reta positiva, o valor foi bem próximo daquele fornecido pelo roteiro, e com uma incerteza uma ordem de grandeza maior que a referência. O valor mais provável foi de 17.68 $\mu$T, o que o faz estar quase no limite inferior da medida $17.8 \pm 0.1$ $\mu$T fornecida no roteiro, e em contrapartida este último pertence ao intervalo de incerteza do primeiro. Para a reta negativa, porém, o coeficiente linear $b$ possui uma incerteza maior que seu valor em módulo. Isso se deve não ao fato dessa incerteza ser demasiado grande (a incerteza de $b$ da reta positiva é somente 3 vezes menor), mas sim ao fato de que $b$ é bem próximo de nulo, o que acarretou em uma grande sensibilidade com relação à ele que se propagou para o cálculo de $B_T$  e sua incerteza. O resultado é que o valor obtido carece em precisão e exatidão, com uma incerteza maior que ele próprio e um valor mais provável mais que o dobro do valor referência. 
+
+O valor do campo magnético da Terra para a frequência 0 foi obtido utilizando, inicialmente, a expressão $I^* = \frac{-b}{a}$ com os coeficientes da reta negativa, pois, ao observar o gráfico linearizado, o ponto no qual a frequência é 0 claramente possui corrente negativa, e, portanto, a reta a ser utilizada nesse caso só poderia ser esta, obtendo o valor de -0.0033 A para a corrente. Logo após, a expressão utilizada foi
+\begin{equation}
+    B_T=I^*\frac{-8 \mu_{0} N}{5^{3 / 2} R},
+    \label{eq3}
+\end{equation}
+através da qual foi obtido o valor do campo magnético da Terra de aproximadamente $3.956 \pm 0.006$ $\mu$T, sendo o erro calculado de forma similar à adotada para obtenção dos erros dos outros valores do campo magnético da Terra e do momento magnético do ímã, mas através da propagação de erro da expressão logo acima. Analisando esses valores, é possível notar que o valor do campo magnético obtido dessa forma é muito próximo ao do obtido através dos coeficientes da reta para as correntes negativas, no entanto, ao fazer dessa forma, a incerteza obtida no valor do campo é drasticamente menor do que a obtida com o coeficiente da reta das correntes negativas.
+
+Apesar do que ocorreu com a reta negativa ser algo fora do controle até que os dados sejam plotados e o ajuste linear feito, o sucesso da reta positiva em estimar o campo com bastante precisão e exatidão e a coerência e precisão entre os valores de dipolo provam que o método experimental elaborado é capaz de produzir resultados satisfatórios com incertezas controladas, sob as condições corretas.

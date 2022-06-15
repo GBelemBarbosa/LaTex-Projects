@@ -1,0 +1,820 @@
+\documentclass[11pt]{beamer}
+\usepackage[makeroom]{cancel}
+\usepackage{verbatim}
+
+\usepackage{bigints}
+
+%\usepackage{unicode-math}
+%\usepackage{mathtools}
+
+
+\usepackage{listings}
+
+%\usepackage{cmbright,fourier}
+
+\newenvironment{metaverbatim}{\verbatim}{\endverbatim}
+
+\usepackage{ulem}
+\usepackage{mathtools}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%        LOADING PACKAGES
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amssymb}
+\usetikzlibrary{arrows}
+
+
+
+\usepackage{chronology}
+\usepackage{multicol}
+\usepackage{url}
+
+              
+
+\title{MA311 - Cálculo III}
+\author{{Ricardo M Martins}\\ rmiranda@unicamp.br\\ 
+\vspace{0.3cm}\url{http://www.ime.unicamp.br/~rmiranda}
+}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{amsbsy}
+\usepackage{pdfpages}
+
+\renewcommand\rmdefault{hpv}
+
+%\usepackage{mathspec}
+%\setmainfont{Gotham Book}
+%\setmathrm{Gotham Book}
+%\setmathfont(Digits,Latin){Gotham Book}
+
+
+\newtheorem{lema}{Lema}
+\BeforeBeginEnvironment{lema}{%
+    \setbeamercolor{block title}{fg=white,bg=blue!50!black}
+    \setbeamercolor{block body}{fg=black, bg=blue!10!white}
+}
+
+\newtheorem{corolario}{Corolário}
+\BeforeBeginEnvironment{corolario}{%
+    \setbeamercolor{block title}{fg=white,bg=orange!70!white}
+    \setbeamercolor{block body}{fg=black, bg=orange!10!white}
+}
+
+\newtheorem{teorema}{Teorema}
+\BeforeBeginEnvironment{teorema}{%
+    \setbeamercolor{block title}{fg=white,bg=green!30!black}
+    \setbeamercolor{block body}{fg=black, bg=green!20!white}
+}
+
+
+\newtheorem{exemplo}{Exemplo}
+\BeforeBeginEnvironment{exercicio}{%
+    \setbeamercolor{block title}{fg=white,bg=orange!85!black}
+    \setbeamercolor{block body}{fg=black, bg=orange!20!white}
+}
+
+
+\newtheorem{exercicio}{Exercício}
+\BeforeBeginEnvironment{exemplo}{%
+    \setbeamercolor{block title}{fg=white,bg=red!70!black}
+    \setbeamercolor{block body}{fg=black, bg=red!20!white}
+}
+
+\newtheorem{exerc}{Exercício}
+\BeforeBeginEnvironment{exemplo}{%
+    \setbeamercolor{block title}{fg=white,bg=red!70!black}
+    \setbeamercolor{block body}{fg=black, bg=red!20!white}
+}
+
+
+
+\newtheorem{prova}{Prova}
+\BeforeBeginEnvironment{prova}{%
+    \setbeamercolor{block title}{fg=white,bg=red!70!black}
+    \setbeamercolor{block body}{fg=black, bg=red!20!white}
+}
+
+
+\newtheorem{solucao}{Solução}
+\BeforeBeginEnvironment{solucao}{%
+    \setbeamercolor{block title}{fg=black,bg=yellow!85!black}
+    \setbeamercolor{block body}{fg=black, bg=yellow!20!white}
+}
+
+\newtheorem{sol}{Solução}
+\BeforeBeginEnvironment{solucao}{%
+    \setbeamercolor{block title}{fg=black,bg=yellow!85!black}
+    \setbeamercolor{block body}{fg=black, bg=yellow!20!white}
+}
+
+\def\C{\mathbb C}
+\def\nx{\mathbf{x}}
+\def\Z{\mathbb Z}
+\def\N{\mathbb N}
+\def\Q{\mathbb Q}
+\def\H{\mathbb H}
+\def\F{{\mathbb F}_q}
+\def\cc{{\mathcal C}}
+\def\bv{{\bf v}}
+\def\rr{{\mathcal R}_n}
+\def\im{{\bf i}}
+\def\supp{\mathop{{\rm supp}}}
+\def\zen{\mathop{\mathcal{Z}}}
+\def\base{\mathcal{B}}
+\def\Geny{\mathcal{G}}
+\def\vezes{\mathop{{\rm times}}}
+\def\Gal{\mathop{{\rm Gal}}}
+\def\alge{\mathcal{A}}
+\def\pr{\noindent{\sc proof. }}
+\def\wh{\widehat}
+
+%\def\lhd{\vartriangleleft}
+%\newcommand{\fim}{\hspace*{\fill} $\square$\medskip}
+%\newcommand{\ndv}{ \ {\mid \kern -0.70 em {\scriptstyle \not}} \ \ }
+
+\newcommand{\rn}[1]{\mathbb{R}^{#1}}
+\newcommand{\xpt}[1]{\dot{#1}}
+\newcommand{\en}[1]{\textbf{e}_#1}
+\newcommand{\ex}[1]{\noindent {\bf #1.}}
+\newcommand{\zz}{\mathbb{Z}_{2}}
+
+\newcommand{\bq}{\begin{equation}}
+\newcommand{\e}{\varepsilon}
+\newcommand{\T}{\theta}
+\newcommand{\f}{\phi}
+\newcommand{\eq}{\end{equation}}
+
+
+
+\DeclareMathOperator{\sen}{sen}
+\newcommand{\senx}{\sen(x)}
+
+\newcommand{\bx}{{\bf x}}
+
+\newcommand{\tr}{{\rm tr}}
+
+\newcommand{\R}{\mathbb R}
+
+\newcommand{\ra}{\rightarrow}
+
+\newcommand{\Rm}{\mathbb R^m}
+\newcommand{\Rn}{\mathbb R^n}
+\newcommand{\RR}{\mathbb R^2}
+\newcommand{\RRR}{\mathbb R^3}
+
+
+
+\usetheme{Boadilla}
+
+\begin{document}
+
+\begin{frame}{}
+\maketitle
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[t]{Integrais}
+
+Sabemos como encontrar funções $y(t)$ {\it boas} e com a propriedade de que
+\begin{equation}\label{0}\dfrac{dy(t)}{dt}=f(t),\end{equation} onde $f(t)$ é outra função: \pause fixando $y(0)=c$ então \[y(t)=\int_0^t f(s)\,ds+c.\] \pause 
+
+Estaremos interessados agora em equações parecidas com \eqref{0}, mas com o lado direito também dependendo de $y(t)$.
+
+
+\end{frame}
+
+
+
+
+\begin{frame}{Um primeiro exemplo}
+
+% https://en.wikipedia.org/wiki/Van_der_Pol_oscillator
+\begin{block}{Pergunta 1}
+Você consegue achar uma função $u(t)$ que satisfaz 
+\begin{equation}\label{1}
+\dfrac{d^2u}{dt^2}(t)+u(t)=0?
+\end{equation}
+\end{block}
+%\textcolor{blue}{Existe alguma função $u(t)$ periódica de período $T>0$  que resolve a equação?}
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}[t]{Colocando o problema de outra forma}
+
+Vamos obter equações equivalentes a $u''(t)+u(t)=0$. \pause 
+
+\begin{itemize}
+\item Seja $u(t)$ uma solução da equação \eqref{1}. \pause 
+\item Denote $v(t)=u'(t)$. \pause 
+\item Então $v'(t)=u''(t)$. \pause 
+\item Como $u(t)$ é solução de \eqref{1}, $u''(t)=-u(t)$. \pause 
+\item Logo $v'(t)=u''(t)=-u(t)$. \pause 
+\end{itemize}
+
+O sistema abaixo é equivalente a \eqref{1}:
+\begin{equation}\label{2}\left\{
+\begin{array}{lcl}
+u'(t)&=&v(t),\\
+v'(t)&=&-u(t).
+\end{array}
+\right.
+\end{equation}
+
+\end{frame}
+
+\begin{frame}[t]{Colocando o problema de outra forma}
+
+\[
+\left\{\begin{array}{lcl}
+u'(t)&=&v(t),\\
+v'(t)&=&-u(t).
+\end{array}
+\right.
+\]
+ \pause 
+\begin{itemize}
+\item Antes procurávamos uma função \textcolor{red}{(mas que dependia de uma derivada de 2a ordem).}
+\item Agora procuramos duas funções \textcolor{red}{(mas que dependem somente de derivadas de 1a ordem).}
+\end{itemize}
+ \pause 
+Quais as soluções do sistema de equações acima?\pause 
+\[
+\left\{\begin{array}{lcl}
+u(t)&=&a\cos(t)+b\sen(t),\\
+v(t)&=&-a\sen(t)+b\cos(t), \ a,b\in\R.
+\end{array}\right.
+\]
+
+
+\end{frame}
+
+\begin{frame}[t]{Colocando o problema de outra forma}
+
+Considere a curva parametrizada
+\[
+\begin{array}{lcl}
+\vspace{0.3cm}\alpha(t)&=&\big(u(t),v(t)\big)\\
+&=&\big(\textcolor{blue}{a\cos(t)+b\sen(t)},\textcolor{red}{-a\sen(t)+b\cos(t)} \big), \ t\in\R.
+\end{array}
+\]
+
+Qual o traço de $\alpha$? \pause 
+
+Note que
+\[\big(\textcolor{blue}{a\cos(t)+b\sen(t)}\big)^2+\big(\textcolor{red}{-a\sen(t)+b\cos(t)}\big)^2=a^2+b^2,\]logo o traço de $\alpha$ está contido numa circunferência de raio $a^2+b^2$ (na verdade, é a circunferência).
+\end{frame}
+
+
+\begin{frame}[t]{Colocando o problema de outra forma}
+
+\begin{itemize}
+\item Todas as circunferências de raio $r\geq 0$ são soluções de \eqref{2}. \pause 
+\item Dado um ponto $(p,q)\in\RR$, existe uma única circunferência que é solução de \eqref{2} e  passa por $(p,q)$. \pause 
+\end{itemize}
+
+\begin{teorema}[Existência e Unicidade] Seja $(p,q)\in\RR$ e $F,G$ funções boas. Existe uma \textcolor{red}{única} solução da equação
+\[
+\left\{\begin{array}{lcl}
+u'(t)&=&F(u(t),v(t)),\\
+v'(t)&=&G(u(t),v(t))
+\end{array}
+\right.
+\]
+que satisfaz $u(0)=p$ e $v(0)=q$.
+\end{teorema}
+
+\textcolor{magenta}{Este teorema é muito mais geral do que isto.}
+\end{frame}
+
+\begin{frame}{Colocando o problema de outra forma}
+
+\textcolor{magenta}{Será que todas as soluções não-constantes de \eqref{1} são periódicas?}
+\pause 
+\begin{center}
+\textcolor{blue}{Sim!}
+\end{center}
+
+\end{frame}
+
+
+
+
+\begin{frame}[t]{E a geometria?}
+
+
+
+$\left\{\begin{array}{lcl}
+u'(t)&=&v(t),\\
+v'(t)&=&-u(t).
+\end{array}
+\right. \ \textcolor{white}{{\footnotesize \textcolor{white}{\leftarrow}\text{E se pensarmos nisto como um campo vetorial?}}}
+$
+
+\[{\footnotesize \alpha(t)=\big(a\cos(t)+b\sen(t),-a\sen(t)+b\cos(t) \big)}\]
+
+
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+\begin{frame}[t]{E a geometria?}
+
+
+
+$\left\{\begin{array}{lcl}
+u'(t)&=&v(t),\\
+v'(t)&=&-u(t).
+\end{array}
+\right. \ \textcolor{red}{{\footnotesize \leftarrow\text{E se pensarmos nisto como um campo vetorial?}}}
+$
+
+\[{\footnotesize \alpha(t)=\big(a\cos(t)+b\sen(t),-a\sen(t)+b\cos(t) \big)}\]
+
+
+
+
+\end{frame}
+
+
+
+\begin{frame}[t]{E a geometria?}
+
+
+
+$\left\{\begin{array}{lcl}
+u'(t)&=&v(t),\\
+v'(t)&=&-u(t).
+\end{array}
+\right. \ \textcolor{blue}{{\footnotesize \leftarrow\text{Teremos um campo vetorial tangente às soluções!}}}
+$
+
+\[{\footnotesize \alpha(t)=\big(a\cos(t)+b\sen(t),-a\sen(t)+b\cos(t) \big)}\]
+
+
+
+\end{frame}
+
+
+%
+%
+%\begin{frame}[t]{E a geometria?}
+%
+%Seja $X(u,v)=(v,-u)$ um campo vetorial. Qual a relação deste campo com as soluções de
+%\[\left\{\begin{array}{lcl}
+%u'(t)&=&v(t),\\
+%v'(t)&=&-u(t)?
+%\end{array}
+%\right.\]
+%
+%Este campo vetorial é sempre tangente às soluções!
+%
+%\end{frame}
+%
+%
+%\begin{frame}[t]{E a geometria?}
+%
+%
+%\begin{center}\includegraphics[width=0.7\textwidth]{aula1-fig4.pdf}
+%\end{center}
+%
+%
+%\end{frame}
+%
+%
+
+
+
+\begin{frame}[t]{E a geometria?}
+
+\begin{block}{Resumindo}
+Supondo boas funções $P,Q$, o campo vetorial \[X(x,y)=\big(P(x,y),Q(x,y)\big)\] é tangente às soluções do sistema de equações diferenciais
+\[\left\{\begin{array}{lcl}
+x'(t)&=&P\big(x(t),y(t)\big),\\
+y'(t)&=&Q\big(x(t),y(t)\big),
+\end{array}
+\right.\]
+e as soluções deste sistema existem e são únicas (fixado um ponto $(p,q)$ por onde a solução passa).
+\end{block}
+
+\textcolor{magenta}{Uma solução de um sistema como o acima é chamada de órbita ou trajetória do sistema.}
+
+\end{frame}
+
+%
+%\begin{frame}[t]{Segundo exemplo}
+%
+%% https://en.wikipedia.org/wiki/Van_der_Pol_oscillator
+%\begin{block}{Pergunta}
+%Você consegue achar uma função periódica $u(t)$ que satisfaz 
+%\[
+%u''(t)\textcolor{red}{-}u(t)=0?
+%\]
+%\end{block}
+%
+%Usando nosso truque, o desafio é equivalente a encontrar uma solução periódica (curva fechada) do sistema
+%\begin{equation}\label{3}\left\{\begin{array}{lcl}
+%u'&=&v,\\
+%v'&=&u.
+%\end{array}
+%\right.\end{equation}
+%
+%Como é este campo vetorial?
+%\end{frame}
+%
+%\end{document}
+
+
+
+\begin{frame}[t]{Segundo exemplo}
+
+% https://en.wikipedia.org/wiki/Van_der_Pol_oscillator
+\begin{block}{Pergunta 2}
+Você consegue achar uma função periódica $u(t)$ que satisfaz 
+\[
+u''(t)+u(t)=\textcolor{red}{2u'(t)}?
+\]
+\end{block}
+ \pause 
+Usando nosso truque, o desafio é equivalente a encontrar uma solução periódica (curva fechada) do sistema
+\begin{equation}\label{3}\left\{\begin{array}{lcl}
+u'&=&v,\\
+v'&=&-u+\textcolor{red}{2v}.
+\end{array}
+\right.\end{equation}
+
+
+
+
+
+\end{frame}
+
+%
+%\begin{frame}[t]{Segundo exemplo}
+%\[\left\{\begin{array}{lcl}
+%u'&=&v,\\
+%v'&=&-u+\textcolor{red}{2v}.
+%\end{array}
+%\right.\]
+%\pause 
+%\textcolor{magenta}{Suponha que exista uma solução suave $\alpha(t)=\big(u(t),v(t)\big)$ $T$-periódica para o sistema \eqref{3}.} 
+%
+%\pause 
+%
+%\begin{itemize}
+%\item  $\displaystyle \oint_\alpha ()\displaystyle 0=\oint_\alpha v\,dv-(2v-u)du$ \pause 
+%\item Green: $\displaystyle \oint_\alpha v\,dv-(2v-u)du=\iint_R 2\,du\,dv$ \pause 
+%\item Logo: $\displaystyle \iint_R 2\,du\,dv =0$, absurdo! \pause 
+%\end{itemize}
+%
+%\textcolor{red}{Portanto, não temos nenhuma solução periódica!} Como são as soluções?
+%\end{frame}
+%
+
+
+
+\begin{frame}[t]{Segundo exemplo}
+
+Como entramos uma solução do sistema anterior?
+
+\begin{itemize} \pause 
+\item Propondo soluções $u(t),v(t)$ polinomiais: \textcolor{red}{não funciona.} \pause 
+\item Soluções $u(t),v(t)$ trigonométricas: \textcolor{red}{não funciona.} \pause 
+\item Misturando funções polinomiais, exponenciais e trigonométricas: \textcolor{blue}{funciona!} \pause 
+\end{itemize}
+
+
+Propondo uma solução da forma $u(t)=e^{a_1t}(a_2+a_3t)$ e $v(t)=e^{b_1t}(b_2+b_3t)$, encontraremos que
+\[u(t)= e^t(a_2+a_3t), \ v(t)=e^t(a_2+a_3+a_3t),\] para todo $a_2,a_3\in\R$.
+\end{frame}
+
+
+\begin{frame}[t]{Encontrando as soluções}
+
+
+Note que se calcularmos $||(u(t),v(t))||$ vamos perceber que $$||(u(t),v(t))||\ra \infty,$$ logo nenhuma solução pode ser periódica.
+
+
+\end{frame}
+
+
+\begin{frame}[t]{Encontrando as soluções}
+
+\textcolor{magenta}{Importante:} originalmente, durante a aula, o argumento que garantia a inexistência da solução periódica foi baseado no Teorema de Green.
+
+O argumento estava correto, mas faltava explicar o motivo de uma das integrais dar zero.
+
+Aqui estão mais alguns detalhes.
+
+
+Suponha que exista uma solução suave $\alpha(t)=\big(u(t),v(t)\big)$ $T$-periódica para o sistema \eqref{3}. Seja $R$ a região delimitada pela curva $\alpha$.
+
+\end{frame}
+
+\begin{frame}[t]{Encontrando as soluções}
+
+Então
+\[\oint_{\alpha} (v,-u+2v)\cdot n\,ds=\oint_{\alpha} v\,dv-(2v-u)\,du,\]
+mas a integral da esquerda precisa ser zero, já que o campo $(v,-u+2v)$ é tangente à curva $\alpha$ e $n$, sendo normal a $\alpha$, será normal também a $(v,-u+2v)$.
+
+Por outro lado, pelo Teorema de Green,
+\[\displaystyle \oint_\alpha v\,dv-(2v-u)du=\iint_R 2\,du\,dv.\] e certamente esta integral não pode dar zero (pois é uma área). \textcolor{magenta}{De onde vem o absurdo? De termos suposto que existe a curva $\alpha$, solução periódica.}
+
+
+
+
+%\begin{itemize}
+%\item  $\displaystyle \oint_\alpha ()\displaystyle 0=\oint_\alpha v\,dv-(2v-u)du$ \pause 
+%\item Green: $\displaystyle \oint_\alpha v\,dv-(2v-u)du=\iint_R 2\,du\,dv$ \pause 
+%\item Logo: $\displaystyle \iint_R 2\,du\,dv =0$, absurdo! \pause 
+%\end{itemize}
+
+
+\end{frame}
+
+
+%
+%\begin{frame}[t]{ \ }
+%\begin{center}
+%\includegraphics[width=0.6\textwidth]{aula1-fig2.pdf}
+%\end{center}
+%\[\textcolor{blue}{u(t)=ae^{t/2}\cos\bigg(\dfrac{\sqrt{3}}{2}t\bigg)+be^{t/2}\sen\bigg(\dfrac{\sqrt{3}}{2}t\bigg)}\]
+%
+%\textcolor{magenta}{Nenhuma solução é periódica!} Como perceber isto sem conhecer explicitamente a solução?
+%
+%
+%\end{frame}
+%
+%
+%
+
+
+%%%
+%\begin{frame}[t]{ \ }
+%% https://en.wikipedia.org/wiki/Van_der_Pol_oscillator
+%Considere o sistema
+%\[
+%\left\{\begin{array}{lcl}
+%\vspace{0.2cm}x'(t)&=&y(t),\\
+%y'(t)&=&-x(t)\textcolor{black}{,}\textcolor{white}{+\mu \cdot \big(1-x(t)^2\big)\cdot y(t),}
+%\end{array}
+%\right.
+%\]
+%onde $x(t),y(t)$ são funções de $t$ diferenciáveis.\\
+%
+%\pause
+%
+%\medskip
+%
+%\textcolor{blue}{Existem funções $x(t),y(t)$ não-constantes e periódicas de período $T>0$  que sa\-tis\-fazem o sistema?}
+%
+%\pause 
+%
+%\textcolor{magenta}{Todas as soluções não-constantes são periódicas?}
+%\end{frame}
+
+
+
+\begin{frame}[t]{Terceiro exemplo}
+% https://en.wikipedia.org/wiki/Van_der_Pol_oscillator
+
+%%%%
+\begin{block}{Pergunta 3}
+Você consegue achar uma função periódica $u(t)$ que satisfaz 
+\[
+u''(t)-\textcolor{red}{(1-u^2)u'}+u=0?
+\]
+\end{block}
+
+ou:
+\begin{block}{Pergunta 3'}
+Você consegue achar uma solução periódica (curva fechada) do sistema abaixo?
+\begin{equation}\label{5}\left\{\begin{array}{lcl}
+u'&=&v,\\
+v'&=&-u+\textcolor{red}{(1-u^2)v}.
+\end{array}
+\right.\end{equation}
+\end{block}
+
+%%%%
+%
+%\begin{block}{Pergunta 3}
+%Você consegue achar uma função periódica $u(t)$ que satisfaz \[u''(t)-(1-u^2)u'+u=0?\]
+%\end{block}
+%
+%
+%Considere o sistema
+%\[
+%\left\{\begin{array}{lcl}
+%\vspace{0.2cm}x'(t)&=&y(t),\\
+%y'(t)&=&-x(t)\textcolor{white}{,}\textcolor{red}{+\mu \cdot \big(1-x(t)^2\big)\cdot y(t),}
+%\end{array}
+%\right.
+%\]
+%onde $x(t),y(t)$ são funções de $t$ diferenciáveis.\\
+%
+%
+%\medskip
+%
+%\textcolor{blue}{Existem funções $x(t),y(t)$ não-constantes e periódicas de período $T>0$  que sa\-tis\-fazem o sistema? Suponha  $\mu$ um parâmetro pequeno.}
+%
+%\textcolor{magenta}{xx}
+
+\end{frame}
+
+\begin{frame}[t]{Problemas, muitos problemas}
+
+\[\left\{\begin{array}{lcl}
+u'&=&v,\\
+v'&=&-u+\textcolor{red}{(1-u^2)v}.
+\end{array}
+\right.
+\]
+
+Esta equação é conhecida com equação de {\it van der Pol}. \pause 
+
+\textcolor{blue}{Podemos provar que existe uma {\bf única} solução periódica, mas não conseguimos exibir uma parametrização para a solução.}
+ \pause 
+
+Ou seja: não podemos obter a solução de forma explícita.
+ \pause 
+
+\textcolor{magenta}{É aí que entra a teoria qualitativa das equações diferenciais: obter informações sobre as soluções da equação diferencial somente a partir do campo vetorial.}
+
+\end{frame}
+
+\begin{frame}[t]{Problemas, muitos problemas}
+
+\begin{minipage}[t]{0.45\textwidth}
+        \vspace{0pt}
+\end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \vspace{0pt}
+A curva vermelha é uma aproximação para a solução periódica de van der Pol.\\ \pause 
+
+As soluções ``internas" se aproximam da curva vermelha, e o mesmo acontece com as soluções ``externas".\\ \pause 
+
+\textcolor{magenta}{A curva vermelha é um típico {\it ciclo limite atrator}.}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[t]{Nosso curso}
+
+Discutiremos os seguintes problemas neste curso: \pause 
+
+\begin{itemize}
+\item Existência de soluções para EDOs \pause 
+\item Soluções de equações de primeira e segunda ordem \pause 
+\item Transformações de Laplace e Lagrange \pause 
+\item Soluções em série \pause 
+\item Rápida introdução às EDPs \pause 
+\item Sistemas lineares \pause 
+\item Introdução aos sistemas dinâmicos \pause 
+\item Modelos matemáticos
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[t]{Nosso curso}
+
+Referências básicas:
+\begin{itemize}
+\item William E. Boyce, Richard C. DiPrima, {\it Elementary differential equations and boundary value problems}.
+\item Djairo Guedes Figueiredo \& Aloisio Freiria Neves, {\it Equações diferenciais aplicadas}. 
+\item Gilbert Strang, {\it Differential equations and linear algebra}.
+\item George F. Simmons, {\it Differential equations with applications and historical notes}. 
+\item Morris W. Hirsch and Stephen Smale, {\it Differential equations, dynamical systems and linear algebra}. 
+\end{itemize}
+
+
+\end{frame}
+
+%%
+
+%%
+
+\begin{frame}[t]{Nosso curso}
+
+Critérios de avaliação \pause 
+
+\begin{itemize}
+\item peso 1: Atividades online (Classroom) \pause 
+\item peso 2: Testinhos (aula do PED) \pause 
+\item peso 3: Prova 1 24/04 \pause 
+\item peso 4: Prova 2 29/06 \pause 
+\item peso 0, mas vale Bis: competições no Kahoot!. \pause 
+\end{itemize}
+
+Cálculo da média final: média ponderada. \pause 
+
+Exame final: 17/07
+\end{frame}
+
+
+\begin{frame}[t]{Nosso curso}
+
+O que é esperado que vocês saibam? \pause 
+
+\begin{itemize}
+\item Derivar e integrar com bastante habilidade. \pause 
+\item Ter alguma lembrança sobre Séries de Taylor. \pause 
+\item Habilidade para parametrizar curvas e entender o traço de uma parametrização. \pause 
+\item Conhecimentos de autovalores/autovetores e diagonalização. \pause 
+\item Noções sobre modelagem matemática (pode ser as que você adquiriu nos cursos de física) \pause 
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[t]{Kahoot!}
+
+\begin{center}\url{https://kahoot.it}
+\end{center}
+
+\pause 
+\textcolor{magenta}{Aula de 6a: testinho de diagnóstico} \pause 
+
+\begin{flushright}Até mais!
+\end{flushright}
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}[t]{Algumas coisas burocráticas}
+
+\begin{itemize}
+\item Plano de Desenvolvimento/Ementa
+\item Provas: 11/04, 23/05 e 27/06 (Exame 10/07)
+\item Bibliografia: \textcolor{blue}{Guidorizzi}, \textcolor{blue}{Stewart}, \textcolor{blue}{Apostol}, \textcolor{blue}{Simmons}
+\item PEDs/PADs
+\item Google Classroom e e-mail oficial
+\item WolframAlpha \& Mathematica
+\item Participação em sala de aula
+\item Média final
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[t]{Trabalho}
+
+\begin{block}{Bloco xxx }
+asdfg
+\end{block}
+
+\begin{exemplo}Determine o trabalho realizado pelo campo 
+\end{exemplo}
+
+\begin{exercicio} kawabanga
+\end{exercicio}
+
+\begin{teorema}
+asdfg
+\end{teorema}
+
+\begin{solucao} kaka
+\end{solucao}
+\end{frame}
+
+
+
+
+
+\setbeamercolor{background canvas}{bg=yellow!20}
+\begin{frame}[t]
+
+\textcolor{red}{\large Próxima aula}
+
+\begin{itemize}
+\item Vamos resolver em grupo a P3 de 2018 (6a/manhã).
+\end{itemize}
+\end{frame}
+
+
+\end{document}

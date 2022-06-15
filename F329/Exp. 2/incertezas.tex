@@ -1,0 +1,34 @@
+\section{Avaliação e propagação de incertezas}
+
+As fontes de incertezas discutidas e identificas pelo grupo foram:
+\begin{enumerate}
+    \item A incerteza de leitura do amperímetro, com f.d.p. retangular e $a=0.01$ mA (precisão da última casa decimal mostrada pelo amperímetro), é dada por $u_{I1}=\frac{a}{2\sqrt{3}}=0.00289$ mA, a incerteza de calibração do amperímetro para o maior valor (em módulo) de corrente utilizado (250 mA), também com f.d.p. retangular e $a= 2,56$ mA, de acordo com o arquivo pdf de exemplos de incertezas disponível no Moodle, é dada por $u_{I2}=\frac{a}{2\sqrt{3}}=0.739$ mA. Dessa forma, combinando as duas incertezas, temos que a incerteza da corrente é $u_I=\sqrt{u_{I1}^2+u_{I2}^2}=\sqrt{0.00289^2+0.739^2}=0.74$ mA. Como a incerteza da corrente de 250 mA (em módulo) é cota superior das incertezas de todos os valores de corrente utilizados no experimento (que estão entre -250 mA e 250 mA), ela foi adotada para todos os pontos experimentais por simplicidade;
+    \item A incerteza da frequência $f$ foi dada pelo Tracker como sendo $\mu_f=0.0008$ Hz, logo a incerteza de $f^2$ é dada por $\sqrt{(2f\cdot \mu_f)^2}$ e foi calculada ponto a ponto pelo programa.
+    \item A incerteza de leitura da balança, com f.d.p. retangular e $a = 0.0001$ kg (precisão da última a casa
+decimal mostrada pelo balança), é dada por $\mu_m = \frac{a}{2\sqrt{3}} = 0.00003$ kg. O comprimento $L$ possui uma f.d.p. triangular para o paquímetro $a=0.1$ mm, incerteza padrão $u_{L}=\frac{a}{2\sqrt{6}}=0.02$ mm), e o raio $r$, que foi calculado como o diâmetro medido com paquímetro dividido por 2, também com f.d.p. triangular, possui metade dessa incerteza, $u_{r}=0.01$ mm, assim como o raio da bobina $R$, com $u_{R}=0.01$ mm.
+A incerteza do momento de inércia pode ser calculada com a propagação da Eq. (3) do roteiro experimental como
+\begin{align*}
+\Delta m_l &=\sqrt{\left(\frac{\partial R}{\partial r} \Delta r\right)^{2}+\left(\frac{\partial R}{\partial m} \Delta m\right)^{2}+\left(\frac{\partial R}{\partial L} \Delta L\right)^{2}} \\
+&=\sqrt{(m / 2 * r \cdot \Delta r)^{2}+\left(r^{2} / 4+L^{2} / 12 \cdot \Delta m\right)^{2}+(m / 6 * L \cdot \Delta L)^{2}} \\
+&=0.0000000016989 \\
+&=1.6989 \times 10^{-9} \\
+&=2 \times 10^{-9} \text{ kg$\cdot$ m$^2$}.  
+\end{align*}
+A incerteza do $\mu$ para a reta negativa foi obtida através  da Eq.~\ref{eq2} como 
+\begin{align*}
+\Delta \mu &=\sqrt{\left(\frac{\partial y}{\partial R} \Delta R\right)^{2}+\left(\frac{\partial y}{\partial a} \Delta a\right)^{2}+\left(\frac{\partial y}{\partial m_l} \Delta m_l\right)^{2}} \\
+&=\sqrt{(3.1*10^{5} * a * m_l \cdot \Delta R)^{2}+(3.1*10^{5} * R * m_l \cdot \Delta a)^{2}+(3.1*10^{5} * R * a \cdot \Delta m_l)^{2}} \\
+&=0.006508862 \\
+&=6.508862 \times 10^{-3} \\
+&=7 \times 10^{-3}. 
+\end{align*}
+\end{enumerate}
+
+E a incerteza do $B_T$ para a reta negativa foi obtida através  da Eq.~\ref{eq3} como 
+\begin{align*}
+\Delta B_T &=\sqrt{\left(\frac{\partial R}{\partial m_l} \Delta m_l\right)^{2}+\left(\frac{\partial R}{\partial b} \Delta b\right)^{2}+\left(\frac{\partial R}{\partial \mu} \Delta \mu\right)^{2}} \\
+&=\sqrt{\left(b * 4 / \mu * p i^{2} \cdot \Delta m_l\right)^{2}+\left(m_l * 4 / \mu * p i^{2} \cdot \Delta b\right)^{2}+\left(-\left(b * 4 / \mu^{2} * p i^{2} * m_l\right) \cdot \Delta \mu\right)^{2}} \\
+&=0.0000056851 \\
+&=5.6851 \times 10^{-6} \\
+&=6 \times 10^{-6}.
+\end{align*}

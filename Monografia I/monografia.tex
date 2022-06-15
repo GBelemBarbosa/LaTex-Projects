@@ -1,0 +1,129 @@
+%=======================================================================
+% MODELO DE MONOGRAFIA DAS DISCIPLINAS MS777/8777
+%
+% Todas as monografias produzidas para as disciplinas de Projeto
+% Supervisionado (MS777 e MS877).
+%
+% Este modelo de monografia segue normas para confecção de textos
+% científicos e foi criada por Ricardo Biloti, com o apoio de Silvania
+% Renata de Jesus Ribeiro Cirilo, bibliotecária da Biblioteca do
+% IMECC/UNICAMP.
+% =======================================================================
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{blindtext}
+\usepackage{listingsutf8}
+\usepackage{mathptmx}
+\usepackage{microtype}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{index}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{nicematrix}
+\usepackage{xcolor}
+\usepackage{soulutf8}
+\usepackage[hyphens]{url}
+\usepackage{bm}
+\usepackage{tabto}
+\usetikzlibrary{matrix}
+\usetikzlibrary{patterns,decorations.pathreplacing}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\newtheorem{theorem}{Teorema}
+\newtheorem{proposition}{Proposição}
+\lstset{inputencoding=utf8/latin1}
+
+\definecolor{gray}{rgb}{0.85,0.85,0.85}
+\lstset{frame=single,
+	basicstyle=\tiny,backgroundcolor=\color{gray},
+	language=Octave,
+	keywordstyle=\color{blue},
+	stringstyle=\color{BrickRed},
+	commentstyle=\color{OliveGreen}}
+
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+\DeclareUnicodeCharacter{2212}{-}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand*\R{\mathbb{R}}
+\newcolumntype{C}{>{\centering\let\newline\\\arraybackslash\ $}m{3cm}<{$}}
+
+%=======================================================================
+%
+% INSTRUÇÕES:
+%
+% Defina logo abaixo, os nomes do aluno e orientador, o título da
+% monografia e a data de entrega. Siga os formatos descritos.
+%
+% Para gerar a monografia, rode, em um terminal, os comandos:
+%
+% pdflatex monografia.tex
+% bibtex monografia
+% pdflatex monografia 
+% pdflatex monografia 
+%
+%=======================================================================
+
+%-----------------------------------------------------------------------
+% Defina o NOME DO ALUNO, em letras maiúsculas
+\newcommand{\aluno}{GABRIEL BELÉM BARBOSA}
+
+%-----------------------------------------------------------------------
+% Defina o Nome do Orientador, com as iniciais em letras maiúsculas
+\newcommand{\orientador}{Prof. Ricardo Miranda Martins}
+
+%-----------------------------------------------------------------------
+% Defina o título da monografia, apenas com a primeira letra maiúscula
+\newcommand{\titulo}{Métodos numéricos em equações diferenciais suaves por partes
+em dimensão 2}
+
+%-----------------------------------------------------------------------
+% Caso o projeto tenha contado com financiamento ou bolsa e edite a
+% a linha abaixo. Do contrário, comente-a com um '%' no início da linha
+\newcommand{\bolsa}{Este trabalho foi financiado pelo CNPq, 2021-2022.} 
+
+%-----------------------------------------------------------------------
+% Defina o ano de entrega da monografia
+\newcommand{\ano}{2021}
+\newcommand{\data}{06/12/2021}
+
+%=======================================================================
+%
+% A partir deste ponto, não faça alteração.
+%
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage[symbol]{footmisc}
+\usepackage{indentfirst}
+\usepackage{natbib}
+
+\usepackage{setspace}
+
+\geometry{a4paper,
+  hmargin={30mm,20mm},
+  vmargin={30mm,30mm}
+  }
+
+\begin{document}
+%--------- Preâmbulo ---------------------------------------------------
+\savegeometry{geral} 
+\include{01-capa}
+\include{02-folhaderosto}
+\setlength{\parindent}{20mm}
+
+%--------- Conteúdo ----------------------------------------------------
+\loadgeometry{geral}
+\setstretch{1.5}
+\include{06-conteudo}
+
+%--------- Referências -------------------------------------------------
+\bibliographystyle{plainnat}
+\bibliography{monografia}
+
+\end{document}
