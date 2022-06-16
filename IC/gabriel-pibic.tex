@@ -1,0 +1,258 @@
+\documentclass[12pt]{article}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{lmodern}
+
+
+\addtolength{\oddsidemargin}{-.975in}
+	\addtolength{\evensidemargin}{-.975in}
+	\addtolength{\textwidth}{1.75in}
+
+	\addtolength{\topmargin}{-.975in}
+	\addtolength{\textheight}{1.75in}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\def\ee{\varepsilon}
+\def\R{\mathbb R}
+
+
+\newtheorem{definicao}{Defini\c c\~ao}
+\newtheorem{definicao_}{Defini\c c\~ao}
+\newtheorem{propriedade_}{Propriedade}
+\newtheorem{lema}[definicao]{Lema}%[section]
+\newtheorem{proposicao}[definicao]{Proposi\c c\~ao}%[section]
+\newtheorem{observacoes}[definicao]{Observações}%[section]
+\newtheorem{obs}[definicao]{Observação}%[section]
+\newtheorem{observacao}[definicao]{Observação}%[section]
+\newtheorem{teorema}[definicao]{Teorema}%[section]
+\newtheorem{teointro}{Teorema}%[section]
+\newtheorem{conjectura}{Conjectura}%[section]
+\newtheorem{corolario}[definicao]{Corol\'ario}%[section]
+\newtheorem{exemplo}[definicao]{Exemplo}%[section]
+\newtheorem{exemplo_alg}[definicao]{Exemplo}%[section]
+\newtheorem{exemplos}[definicao]{Exemplos}%[section]
+
+\def\C{\mathbb C}
+\def\Z{\mathbb Z}
+\def\N{\mathbb N}
+\def\Q{\mathbb Q}
+\def\H{\mathbb H}
+\def\F{{\mathbb F}_q}
+\def\cc{{\mathcal C}}
+\def\bv{{\bf v}}
+\def\rr{{\mathcal R}_n}
+\def\im{{\bf i}}
+\def\supp{\mathop{{\rm supp}}}
+\def\zen{\mathop{\mathcal{Z}}}
+\def\base{\mathcal{B}}
+\def\Geny{\mathcal{G}}
+\def\vezes{\mathop{{\rm times}}}
+\def\Gal{\mathop{{\rm Gal}}}
+\def\alge{\mathcal{A}}
+\def\pr{\noindent{\sc proof. }}
+\def\wh{\widehat}
+
+%\def\lhd{\vartriangleleft}
+%\newcommand{\fim}{\hspace*{\fill} $\square$\medskip}
+%\newcommand{\ndv}{ \ {\mid \kern -0.70 em {\scriptstyle \not}} \ \ }
+
+\newcommand{\rn}[1]{\mathbb{R}^{#1}}
+\newcommand{\xpt}[1]{\dot{#1}}
+\newcommand{\en}[1]{\textbf{e}_#1}
+\newcommand{\zz}{\mathbb{Z}_{2}}
+\newcommand{\dd}{\mathbb{D}_{4}}
+\newcommand{\bq}{\begin{equation}}
+\newcommand{\e}{\varepsilon}
+\newcommand{\T}{\theta}
+\newcommand{\f}{\phi}
+\newcommand{\eq}{\end{equation}}
+
+
+%\hyphenation{adapta-dos,mathe-ma-ti-ca,exem-plo,apro-fun-dar,es-tu-dan-te,ma-te-ma-ti-ca}
+
+\pagenumbering{arabic}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% corpo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\usepackage{refcheck}
+\begin{document}
+\fontsize{14}{18} \selectfont 
+
+
+\begin{center}
+{\bf IMECC/Unicamp}\\
+{\bf Projeto de Pesquisa de Iniciação Científica}\\
+
+\vspace{.5cm}
+
+{\bf\Large Métodos numéricos em equações diferenciais suaves por partes em dimensão 2}
+\end{center}
+
+\vspace{1cm}
+
+\noindent{\bf Orientador:} Dr. Ricardo Miranda Martins\\
+\noindent{\bf Estudante:}  Gabriel Belém Barbosa\\
+
+\medskip
+ 
+\noindent{\bf Enquadramento do projeto em área essencial:} Pesquisa Básica.
+
+\noindent{\bf Palavras-chave:} Equações diferenciais, sistemas de Filippov, órbitas periódicas.
+
+
+\section*{Resumo}
+
+Neste projeto estudaremos equações diferenciais suaves por partes de um ponto de vista numérico. Nosso interesse principal está no estudo da existência de soluções periódicas para sistemas de equações diferenciais lineares por partes em dimensão 2, tanto no caso em que a região de descontinuidade é regular quanto no caso não-regular. Estudaremos em particular a existência (e quantidade) de ciclos limite existentes para dar suporte a algumas conjecturas existentes sobre o assunto.
+
+
+\section{Introdução e justificativa}
+
+A teoria das equações diferenciais suaves por partes é um tópico de pesquisa bastante ativo dentro da matemática e uma das motivações para seu estudo é a grande quantidade de fenômenos que podem ser modelados por equações desse tipo (veja \cite{diBernardo-livro,survey}).
+
+Nesse projeto, estudaremos equações diferenciais suaves por partes do tipo
+\[\dot x=F(x)=\left\{\begin{array}{lcl}
+f(x)&,&h(x)\geq 0,\\
+g(x)&,&h(x)\leq 0,
+\end{array}\right.
+\]
+onde $x\in\mathbb R^2$, $f(x),g(x)$ são campos vetoriais em $\mathbb R^2$, $h:U\subset\mathbb R^2\rightarrow\mathbb R$ é uma função suave. Vamos supor que o conjunto dos pontos $x\in U$ tais que $h(x)=0$, denotado $\Sigma$, divide o aberto $U$ em vários subconjuntos abertos.
+
+Faremos uso da convenção de Filippov (veja \cite{F}) para soluções do sistema anterior. Este conceito de solução, bastante usado principalmente por sua grande capacidade de expressar as soluções de problemas concretos, resolve o problema da definição do que é a solução de $\dot x=F(x)$ para condições iniciais que estejam em $\Sigma$.
+
+Um caso particular, mas muito importante, é quando $f,g$ são funções afins. Nesse caso, é verdade que cada uma das equações diferenciais $\dot x=f(x)$ e $\dot x=g(x)$ que aparecem na definição de $\dot x=F(x)$ possuem soluções explícitas, mas a solução da equação completa não pode ser obtida explicitamente de modo simples. A razão para isso é que o ``tempo de voo'' de um tempo até que ele atinja a região em que $h(x)=0$ nem sempre pode ser explicitado. Isso torna complicado estudar propriedades quantitativas e qualitativas das soluções de $\dot x=F(x)$, como por exemplo a existência de soluções periódicas isoladas.
+
+A existência de tais soluções, chamadas de ciclos limite, é importante tanto do ponto de vista de aplicações quanto do ponto de vista teórico (veja o caso do famoso 16o Problema de Hilbert, por exemplo em \cite{jaume2, coloquio,yu}), e tem sido estudada desde o começo do século passado. No caso das equações diferenciais suaves por partes, esse estudo é mais recente.
+
+Um resultado importante nessa direção foi obtido em \cite{china1}: foi provado que um sistema de equações diferenciais lineares por partes admitia 3 ciclos limite. Essa prova foi obtida por métodos numéricos, e formalizada mais tarde em \cite{jaume1}, que deram uma prova analítica para esse fato e conjecturaram que o número máximo de ciclos limite de fato é 3. Nesse projeto, estudaremos ambas as provas e produziremos mais exemplos que reforçam a conjectura.
+
+Estudaremos também o caso dos sistemas de equações diferenciais lineares por partes em que a descontinuidade é o conjunto dos pontos $(x,y)\in\mathbb R^2$ tais que $xy=0$, ou seja, não é uma variedade regular. Esse caso foi estudado em \cite{guilherme,paulo}, mas ainda não existe uma boa resposta sobre o número máximo de ciclos limite. Estudaremos esse problema com o objetivo de estabelecer uma boa conjectura a respeito desse número máximo.
+
+
+
+
+
+%A dinâmica do campo deslizante sobre a região de descontinuidade merecerá especial atenção.
+%
+%Como aplicação, estudaremos  estudaremos a dinâmica de campos transversais por partes  em $2$-variedades compactas (esfera, toro, espaço projetivo), considerando as arestas de uma dada triangulação como o conjunto de descontinuidade.
+%
+%
+%
+
+\section{Background do estudante}
+
+O estudante está no 5o período do curso de matemática aplicada. Ele já cursou todas as disciplinas necessárias para o bom andamento desse projeto.
+
+
+\section{Objetivos}
+
+O objetivo do projeto é estudar, do ponto de vista numérico, as soluções das equações diferenciais suaves por partes. \\
+
+Objetivos específicos são:
+
+\begin{enumerate}
+\item Estudar a convenção de Filippov para soluções de equações diferenciais suaves por partes.
+\item Estudar os artigos \cite{china1} e \cite{jaume1}.
+\item Produzir exemplos de sistemas com pelo menos 3 ciclos limite, como feito em \cite{china1}.
+\item Estudar o número máximo de ciclos limite que podem ser obtidos com sistemas de equações diferenciais lineares por partes, com superfície de descontinuidade $xy=0$.
+\end{enumerate}
+
+
+
+
+
+
+\section{Cronograma}
+
+\noindent {\bf setembro/2021:} Revisar sistemas de equações diferenciais lineares planares..\\
+
+\noindent {\bf outubro-novembro/2021}: Estudar os conceitos básicos da convenção de Filippov, \cite{F}.\\
+
+\noindent {\bf dezembro/2021-janeiro/2022}: Estudar o artigo \cite{china1}.\\
+
+\noindent {\bf fevereiro/2022}: Elaboração do relatório parcial.\\
+
+\noindent {\bf março/2022}: Estudar o artigo \cite{jaume1}.\\
+
+\noindent {\bf abril/2022}: Produzir novos exemplos de equações diferenciais suaves por partes com 3 ciclos limite.\\
+
+\noindent {\bf maio/2022}: Estudar o problema da existência de ciclos limite em sistemas de equações diferenciais lineares por partes, com superfície de descontinuidade $xy=0$.\\
+
+\noindent {\bf junho-julho/2022}: Realizar simulações computacionais e obter exemplos, com o objetivo de estabelecer uma conjectura sobre o número máximo de ciclos limite (no caso anterior).\\
+
+\noindent {\bf agosto/2022}: Elaborar o relatório final.
+
+\section{Material e Métodos}
+
+Faremos uso das referências bibliográficas listadas no fim deste projeto. Os métodos são os usuais em matemática, com apresentação de seminários para o orientador. Além disto, contaremos com o auxílio dos softwares Matlab, Mathematica e Python para explorar as propriedades gráficas e numéricas dos sistemas envolvidos.
+
+\section{Bibliografia básica}
+
+\begin{thebibliography}{99}
+
+\bibitem{guilherme} G. T. da Silva, {\it Non-smooth dynamical systems with singular switching manifolds: the double discontinuity case}, Tese de Doutorado, Unicamp, 2021.
+
+\bibitem{paulo} J. Llibre, P. R da Silva, M. A. Teixeira, {\it Sliding vector fields for non-smooth dynamical systems having intersecting switching manifolds}. Nonlinearity {\bf 28} 493--507, 2015.
+
+\bibitem{jaume1}J. Llibre, E. Ponce, {\it Three limit cycles in discontinuous piecewise linear differential systems with two zones}. Dynam. Contin. Discrete Impuls. Systems B, {\bf 19}, 325--335, 2012.
+
+\bibitem{china1} S.-M. Huan, X.-S. Yang, {\it On the number of limit cycles in general planar piecewise linear systems}, Discrete and Continuous Dynamical Systems-A {\bf 32} 2147--2164, 2012.
+
+%\bibitem{ADL2} {\sc J. C. Art\'{e}s, F. Dumortier, J. Llibre}, {\it Qualitative Theory of Planar Differential Systems}, Springer-Verlag, 2006.
+
+\bibitem{diBernardo-livro} {\sc M. di Bernardo, C. J. Budd, A. R. Champneys, P. Kowalczyk}, {\it Piecewise-smooth Dynamical Systems -- Theory and Applications}, Springer-Verlag, 2008.
+
+%\bibitem{pugh} M. E. Broucke, C. Pugh, S. Simic, Structural stability of piecewise smooth systems. Computational and Applied Mathematics {\bf 20} 51--89 (2001).
+
+%\bibitem{chasab} J. Chavarriga, M. Sabatini, {\it A Survey of Isochronous Centers}, Qualitative Theory of Dynamical Systems {\bf 1}, 1--70, (1999).
+
+%\bibitem{copple} W. A. Coppel, {\it Some quadratic systems with at most one limit cycle}, Dynamics Reported {\bf 2} 61--88 (1989).
+
+
+\bibitem{F} {\sc A. F. Filippov}, {\it Differential equations with discontinuous righthand sides}, vol. {\bf 18} of Mathematics and its Applications (Soviet Series), Kluwer Academic Publishers Group, Dordrecht, 1988.
+
+%\bibitem{G-S-T} {\sc M. Guardia, T. M. Seara, M. A. Teixeira}, {\it Generic bifurcations of low codimension of planar Filippov Systems}, Journal of Differential Equations, vol. \textbf{250}, 1967-2023, 2011.
+
+\bibitem{jaume2} J. LLibre, {\it On the 16-Hilbert Problem}, Gac. R. Soc. Mat. Esp. {\bf 18}, 543--554, 2015.
+
+%\bibitem{smale} M. W. Hirsch, S. Smale, {\it Differential Equations, Dynamical Systems, and Linear Algebra}, Academic Press, 1974
+
+%\bibitem{centers} I. D. Iliev, {\it Perturbations of Quadratic Centers}, Bull. Sci. Math {\bf 122}, 107--161 (1998)
+
+%\bibitem{luis} L. F. Mello, D. C. Braga, {\it Arbitrary number of limit cycles for planar discontinuous piecewise linear differential systems with two zones}, Electronic Journal of Differential Equations {\bf 228}, 1--12, (2015).
+
+\bibitem{survey} {\sc J. S. W. Lamb, O. Makarenkov}, {\it Dynamics and bifurcations of non smooth systems: A survey}, Physica D: Nonlinear Phenomena, vol. \textbf{241}, 1826-1844, 2012.
+
+\bibitem{coloquio} M. Uribe, H. Movasati, {\it Limit Cycles, Abelian Integral and Hilbert’s Sixteenth Problem}, Publicações Matemáticas do CBM, 2017.
+
+%\bibitem{aninha} J. Llibre, A. C. Mereu, {\it Limit cycles for discontinuous quadratic differential systems with two zones}, Journal of Mathematical Analysis and Applications {\bf 413}, 763--775 (2014).
+
+\bibitem{yu} Yu. S. Ilyashenko, {\it Finiteness Theorems for Limit Cycles}, Translations of Mathematical Monographs, 1991.
+
+
+
+
+\end{thebibliography}
+
+
+
+\bigskip
+
+\bigskip
+
+Campinas, \today
+
+
+\bigskip
+
+\bigskip
+
+Ricardo Miranda Martins
+
+Orientador
+
+
+\end{document}

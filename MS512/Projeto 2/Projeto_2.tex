@@ -102,7 +102,7 @@ c&=(A^TA)^{-1}A^Ty \nonumber \\
 &=R^{-1}(R^T)^{-1}R^TQ^Ty \nonumber \\
 &=R^{-1}Q^Ty
 \end{align}
-Onde foi usado que $R$ é invertível e $Q$ ortogonal, por construção. Ao contrário de uma decomposição algébrica de $A$, o que é obtido em qualquer método numérico, na realidade, são aproximações $\tilde{R}$ e $\tilde{Q}$ tal que $A=\tilde{Q}\tilde{R}+E$, sendo $E$ uma correção para os erros numéricos. De fato, sequer a matriz $\tilde{Q}$ é ortogonal, sendo, no entanto, possivelmente próxima de o ser numericamente, dependendo da estabilidade do método e do condicionamento da própria matriz $A$. Além disso, há a solução do sistema normal em si, que carrega e intensifica erros e gera novos arredondamentos, independe da fatoração, fato esse que que será tratado na Análise e Discussão ao final desta parte com a separação do erro em estágios. 
+Onde foi usado que $R$ é invertível e $Q$ ortogonal por construção. Ao contrário de uma decomposição algébrica de $A$, o que é obtido em qualquer método numérico, na realidade, são aproximações $\tilde{R}$ e $\tilde{Q}$ tal que $A=\tilde{Q}\tilde{R}+E$, sendo $E$ uma correção para os erros numéricos. De fato, sequer a matriz $\tilde{Q}$ é ortogonal, sendo, no entanto, possivelmente próxima de o ser numericamente, dependendo da estabilidade do método e do condicionamento da própria matriz $A$. Além disso, há a solução do sistema normal em si, que carrega e intensifica erros e gera novos arredondamentos, independe da fatoração, fato esse que que será tratado na Análise e Discussão ao final desta parte com a separação do erro em estágios. 
 
 Vale notar que as colunas da $A$ poderiam ser permutadas, sabendo-se que a mesma permutação ocorreria entre os elementos de $c$, isto é, ao se permutar as colunas $j$ e $k$ de $A$, ao final do processo o coeficiente $c_j$ e $c_k$ estariam um no lugar do outro em $c$. Tais permutações, entretanto, não afetam o número de condição e a estabilidade do problema, pois, sendo $P$ uma matriz de permutação, e sendo, portanto $P^{-1}=P^T$, tem-se que o número de condição na norma 2, $\kappa_2$, de $PA$ é
 \[
@@ -261,7 +261,17 @@ Utilizando a função \verb+linspace+, em seguida foi construído o espaço de $
 \end{table}
 \\
 E a seguir o gráfico do erro ponto a ponto ao quadrado.
+\begin{figure}[H]
+\centering
+\caption{\label{fig:1} Erro quadratico ponto a ponto}
+\includegraphics[width=11cm]{err2}
+\end{figure}
 E o gráfico dos dados e da aproximação sobrepostos.
+\begin{figure}[H]
+\centering
+\caption{\label{fig:2} MMQ vs. $y(t_i)$}
+\includegraphics[width=11cm]{MMQ2}
+\end{figure}
 O MSE entre os pontos experimentais e a aproximação foi de 464.18, o que não é de se surpreender para uma modelagem de dados experimentais (que não seguem precisamente uma função devido ao \textit{white noise}$^{[7]}$) dada a magnitude dos valores envolvidos. O pior erro pontual entre a fatoração $QR$ numérica por Householder e a matriz $A$ original foi de 1.1102e-15, enquanto o MSE entre estes foi de somente 5.0901e-32. O $\kappa_2$ da matriz $R$ encontrada e de $A^TA$ são 1.4556 e 2.1187, respectivamente, sendo então esse problema, em comparação, muito mais estável que o anterior, portanto as mesmas conclusões anteriores (com respeito à análise dos erros dos métodos em contraste aos números de condição) são aplicáveis ao problema atual. 
 \section{Conclusão}
 
@@ -278,6 +288,23 @@ O MSE entre os pontos experimentais e a aproximação foi de 464.18, o que não 
 \item M. Mahooti. \textit{Least Squares Fitting Trigonometric Functions (MATLAB code)}. ResearchGate, 2019. Disponível em: \url{<https://www.researchgate.net/publication/337653997_Least_Squares_Fitting_Trigonometric_Functions_MATLAB_code>} Acesso em: 28 mai. 2021.
 \end{enumerate}
 
+\newpage
+\section{Apêndice}
+\begin{figure}[H]
+\centering
+\caption{\label{fig:3} Erro quadratico ponto a ponto para Householder}
+\includegraphics[width=11cm]{house}
+\end{figure}
+\begin{figure}[H]
+\centering
+\caption{\label{fig:4} Erro quadratico ponto a ponto para Cholesky}
+\includegraphics[width=11cm]{cholesky}
+\end{figure}
+\begin{figure}[H]
+\centering
+\caption{\label{fig:5} Erro quadratico ponto a ponto para GSM}
+\includegraphics[width=11cm]{GSM}
+\end{figure}
 Código para Householder:
 \begin{verbatim}
 n=11;
